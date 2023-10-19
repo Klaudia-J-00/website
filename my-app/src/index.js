@@ -22,7 +22,7 @@ root.render(
         <Route path="/" element={<Hero gltfPath="/keyboard2.glb" />} />
         <Route path="/about" element={<About />} />
         <Route path="/personalization" element={<Personalization />} />
-        <Route path="/basket" element={<Basket />} />
+        <Route path="/basket/:id?" element={<Basket />} />
         <Route path="/keyboard" element={<Keyboard />} />
         <Route path='/products/:id'element={<SingleProduct/>} />
       </Routes>

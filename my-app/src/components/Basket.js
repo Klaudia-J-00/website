@@ -1,23 +1,36 @@
 import './Basket.css';
-import { useEffect, useState } from "react";
-import axios from "axios"
+import { useEffect } from "react";
 import { Nav } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../Redux/Actions/CartActions";
+import { useLocation } from 'react-router-dom';
 
 function Basket() {
-    const [products, setProducts] = useState([])
+    const { id } = useParams();
+    const location = useLocation()
+    const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    const dispatch = useDispatch()
 
-    useEffect(()=> {
-        const fetchproducts = async() => {
-            const {data} = await axios.get("/api/products")
-            setProducts(data)
+    const cart = useSelector(state => state.cart)
+    const { cartItems } = cart
+
+    useEffect(() => {
+        if(id){
+            dispatch(addToCart(id, qty))
         }
-        fetchproducts()
-    },[])
+    }, [dispatch, id, qty])
 
     return (
         <div className="Basket">
             <h1 className='header'>KOSZYK</h1>
-            <div className='row header-row'>
+            { 
+            cartItems.length === 0 ?(
+                <div className='row header-row text-center'>
+                    <h3>Twój koszyk jest pusty</h3>
+                </div>
+            ) : (
+                <div className='row header-row'>
                 <div className='col-12 col-md-8 mb-5'>
                     <div className='row'>
                         <div className='col-3 text-center'>Produkt</div>
@@ -27,16 +40,14 @@ function Basket() {
                         <div className='col-2 text-center'>Usuń</div>
                     </div>
                     <hr></hr>
-                    {products.map((product) => (
-                        <div className='row particular-product align-items-center' key={product.id}>
-                            <div className='col-3 text-center'><img src={product.image_src}  className="product-image-basket img-fluid" alt="" /></div>
-                            <div className='col-3 text-center'>{product.title}</div>
+                        <div className='row particular-product align-items-center'>
+                            <div className='col-3 text-center'><img src=''  className="product-image-basket img-fluid" alt="" /></div>
+                            <div className='col-3 text-center'>Klawiatura numeryczna</div>
                             <div className='col-2 text-center'>- 1 +</div>
                             <div className='col-2 text-center'>199.99</div>
                             <div className='col-2 text-center'>X</div>
                             <hr className='line'></hr>
                         </div>
-                    ))}
                 </div>
                 <div className='col-12 col-md-4'>
                     <div className='row'>
@@ -61,6 +72,7 @@ function Basket() {
                     </div>
                 </div>
             </div>
+            )}
         </div>
     );
 }

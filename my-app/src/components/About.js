@@ -22,7 +22,7 @@ function About() {
       setPersonalizedCount((prevCount) => Math.min(prevCount + 2, maxCount.personalized));
     }, 20);
     return () => clearInterval(interval);
-  }, []);
+  }, [maxCount.keyboard, maxCount.personalized, maxCount.user]);
 
   const handleMouseOver = (index) => {
     setHoveredIndex(index);
