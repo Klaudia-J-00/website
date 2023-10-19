@@ -1,0 +1,37 @@
+.header { 
+    font-family: 'Italiana', serif;
+    padding: 0px 60px;
+    padding-top: 30px;
+    font-size: 8vw;
+}
+
+.header-row {
+    padding: 0px 60px;
+    padding-top: 50px;
+}
+
+.line {
+    margin-top: 20px;
+}
+
+.product-image-basket{
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.total-price {
+    position: relative;
+    right: -22%;
+}
+
+.total-price-with-customs {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+.blue-bg {
+    background-color: #7EB7E3;
+    padding: 30px;
+    margin-left: 2px;
+    margin-right: 2px;
+}

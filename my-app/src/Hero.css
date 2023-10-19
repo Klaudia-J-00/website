@@ -1,0 +1,198 @@
+.Hero { 
+    text-align: center;
+    font-weight: 500;
+}
+
+.Hero-Container {
+    z-index: 2;
+    position: relative;
+    width: 40vw;
+    left: 15%;
+    top: 60%;
+}
+
+.Hero h1 {
+    font-family: 'Climate Crisis', cursive;
+}
+
+.Hero-info {
+    background: radial-gradient(at 18% 99%, #7EB7E3 0px, transparent 50%) repeat scroll 0% 0%, 
+    radial-gradient(at 97% 8%, #E88ED3 0px, transparent 50%) repeat scroll 0% 0%, 
+    radial-gradient(at 79% 82%, #f8f9fA 0px, transparent 50%) repeat scroll 0% 0%,
+    radial-gradient(at 96% 10%, #7EB7E3 0px, transparent 50%) repeat scroll 0% 0%,    
+    radial-gradient(at 42% 20%, #E88ED3 0px, transparent 50%) repeat scroll 0% 0%,
+    radial-gradient(at 4% 49%, #f8f9fA 0px, transparent 50%) repeat scroll 0% 0%;
+    border-radius: 20px;
+}
+
+.Hero-button {
+    position: relative;
+    width: 40%;
+    left: 20%;
+}
+
+.btn {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: 700;
+    background-color: #E88ED3;
+    padding: 19px 60px;
+    box-shadow: 0 10px 17px rgba(0, 0, 0, 0.2);
+  }
+
+.btn:hover {
+    background-color: #7EB7E3;
+    color: #fff;
+} 
+
+/* MEDIA QUERIES */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .Hero {
+        width: 65vw;
+    }
+
+    .Hero h1 {
+        font-size: 7.1vw;
+    }
+    
+    .Hero-info {
+        font-size: 3.7vw;
+    }
+
+    .Hero-button {
+        width: 100%;
+        left: 0%;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .Hero-Container {
+        left: 17%;
+    }
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .Hero {
+        width: 65vw;
+    }
+
+    .Hero h1 {
+        font-size: 5.5vw;
+    }
+    
+    .Hero-info {
+        font-size: 3.3vw;
+    }
+
+    .Hero-button {
+        width: 80%;
+        left: 10%;
+    }
+
+    .btn {
+        padding: 20px 40px;
+    }
+
+    .Hero-Container {
+        left: 17%;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .Hero {
+        width: 70vw;
+    }
+    
+    .Hero h1 {
+        font-size: 5vw;
+    }
+    
+    .Hero-info {
+        font-size: 2.9vw;
+    }
+
+    .Hero-Container {
+        left: 14%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .Hero {
+        width: 45vw;
+    }
+
+    .Hero h1 {
+        font-size: 3.6vw;
+    }
+    
+    .Hero-info {
+        font-size: 1.8vw;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .Hero {
+        width: 40vw;
+    }
+    
+    .Hero h1 {
+        font-size: 3.3vw;
+    }
+    
+    .Hero-info {
+        font-size: 1.5vw;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .Hero {
+        width: 40vw;
+    }
+    
+    .Hero h1 {
+        font-size: 3.2vw;
+    }
+    
+    .Hero-info {
+        font-size: 1.2vw;
+    }
+}
+
+@media only screen and (min-width: 2700px) {
+    .Hero {
+        width: 60vw;
+    }
+    
+    .Hero h1 {
+        font-size: 1.7vw;
+    }
+    
+    .Hero-info {
+        font-size: 1.2vw;
+    }
+}
+
+@media only screen and (min-width: 3200px) {
+    .Hero {
+        width: 60vw;
+    }
+    
+    .Hero h1 {
+        font-size: 1.2vw;
+    }
+    
+    .Hero-info {
+        font-size: 0.7vw;
+    }
+  }

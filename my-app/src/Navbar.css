@@ -1,0 +1,64 @@
+.App {
+  text-align: center;
+  box-shadow: 0 20px 20px  rgba(180, 180, 180, 0.2);
+}
+
+.nav-link {
+  color: black!important;
+  font-weight: 600!important;
+}
+
+.navbar-brand {
+  color: black;
+  margin-left: 60px;
+  font-weight: 800;
+  font-size: 2.5rem;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.nav-link:hover {
+  color: #7EB7E3!important;
+}
+
+.nav-link:focus {
+  color: #7EB7E3!important;
+}
+
+.navbar-brand:hover {
+  color: black;
+}
+
+.navbar-toggler {
+  color: black;
+  border: 2px solid black;
+  border-radius: 30%;
+  background-color: #E88ED3;
+}
+
+.navbar-toggler:focus {
+  background-color: #7EB7E3;
+}
+
+.navbar-toggler:hover {
+  background-color: #7EB7E3;
+}
+
+.dropdown-item:focus {
+  background-color: #7EB7E3;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 320px) {
+  .navbar-brand {
+    margin-left: 0px;
+  }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 770px) {
+  .navbar-brand {
+    margin-left: 60px;
+  }
+}

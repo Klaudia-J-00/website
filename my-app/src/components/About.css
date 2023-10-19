@@ -1,0 +1,825 @@
+.About-element { 
+    background: #7EB7E3;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 24vh;
+    width: 15vw;
+    text-align: center;
+    color: #d3d3d3;
+    text-shadow:
+        -1px 0px 0px #000000,
+        1px 0px 0px #000000,
+        0px -1px 0px #000000,
+        0px 1px 0px #000000;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.Social-element { 
+    background: #BDBDBD;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 24vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.Certificates-element { 
+    background: #E88ED3;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 24vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.Contact-element { 
+    background: #BDBDBD;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 48vh;
+    width: 15vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.Services-element { 
+    background: #7EB7E3;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 23.1vh;
+    width: 17.2vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.Values-element {
+    background: #E88ED3;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 23.1vh;
+    width: 17.2vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.About-column-between {
+    margin-right: 1vw;
+}
+
+.History-element { 
+    background: #BDBDBD;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 48vh;
+    width: 14.2vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.Stats-element { 
+    background: #7EB7E3;
+    border: 4px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    height: 48vh;
+    width: 14.2vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.About-icons {
+    font-size: 3.8rem;
+}
+
+.About-icon {
+    margin: 0.8vw;
+    color: #000;
+}
+
+.About-icon:hover{
+    color: #E88ED3;
+}
+
+.Certificate>h6{
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.Certificates-icon {
+    font-size: 3.3rem;
+    color: #000;
+}
+
+.About-Certificates {
+    text-align: center;
+}
+
+.envelope-animation {
+    width: 14vw;
+}
+
+.history-animation {
+    width: 15vw;
+}
+
+.stats-animation {
+    width: 10vw;
+}
+.stats {
+    margin-top: 50px;
+    margin-bottom: 28px;
+}
+
+.contact-icon {
+    font-size: 3.8rem;
+}
+
+.Contact>p {
+    font-size: 1rem; 
+    font-weight: 500;
+}
+
+.Contact {
+    text-align: center;
+}
+
+.contact-icon {
+    color: #000;
+}
+
+.Services { 
+    text-align: center;
+}
+
+.Services>p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.Values-col>h6 {
+    font-size: 0.8rem;
+    color: #000;
+    font-weight: 500;
+}
+
+.Values-icon {
+    font-size: 3rem;
+    color: #000;
+}
+
+.Values-col {
+    text-align: center;
+}
+
+.About-History {
+    text-align: center;
+}
+
+.history>h4 {
+    font-weight: 800;
+    margin-top: 8px;
+    color: #000;
+}
+
+.history {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.About-Stats {
+    text-align: center;
+}
+
+.Stats>p {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.Stats>p>h4 {
+    font-weight: 800;
+    margin-top: 8px;
+    color: #000;
+    margin-bottom: 0;
+}
+
+
+/* MEDIA QUERIES */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 430px) {
+    .socials-title>h4 {
+        font-size: 1.3rem!important;
+    }
+
+    .About-icons {
+        font-size: 3rem!important;
+    }
+
+    .certificates-title>h4 {
+        font-size: 1.3rem!important;
+    }
+
+    .Certificates-icon {
+        font-size: 3rem!important;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    .About {
+        margin-right: 20px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .About-element {
+        display: none!important;
+    }
+    
+    .socials-title>h4 {
+        font-weight: 800;
+        font-size: 2rem;
+    }
+
+    .About-icon {
+        margin: 3vw;
+    }
+
+    .About-icons {
+        font-size: 4rem;
+    }
+
+    .certificates-title {
+        text-align: center;
+    }
+
+    .certificates-title>h4 {
+        font-weight: 800;
+        font-size: 2rem;
+    }
+
+    .certificates-title>h4>p {
+        font-weight: 400;
+        font-size: 1.1rem;
+        margin: 4vw;
+    }
+
+    .Certificate {
+        margin-top: 2vw;
+    }
+
+    .Certificates-icon {
+        font-size: 4rem;
+    }
+
+    .Certificate>h6 {
+        font-size: 2vw;
+    }
+
+    .Contact-element { 
+        width: 100vw;
+        height: 23vh;
+        background-color: #7EB7E3;
+    }
+
+    .Contact {
+        display: none!important;
+    }
+
+    .Services-element {
+        display: none!important;
+    }
+
+    .Values-element {
+        display: none!important;
+    }
+
+    .History-element { 
+        display: none!important;
+    }
+
+    .Stats-element { 
+        display: none!important;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+    .About-element { 
+        display:flex!important;
+        width: 20vw;
+    }
+
+    .Contact-element { 
+        width: 20vw;
+    }
+
+    .Services-element {
+        width: 21vw;
+    }
+
+    .Values-element {
+        width: 21vw;
+    }
+
+    .History-element { 
+        width: 17vw;
+    }
+
+    .history>h4 {
+        font-size: 0.9rem;
+    }
+
+    .history{
+        font-size: 0.6rem;
+    }
+
+    .Stats-element { 
+        width: 17vw;
+    }
+
+    .Stats>p {
+        font-size: 0.7rem;
+    }
+
+    .Contact>p {
+        font-size: 0.85rem; 
+    }
+
+    .Services>p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .About {
+        margin-left: 100px;
+    }
+
+    .About-element { 
+        width: 22vw;
+    }
+
+    .Contact-element { 
+        width: 22vw;
+    }
+
+    .Services-element {
+        width: 22vw;
+    }
+
+    .Services>p {
+        font-size: 1rem;
+    }
+
+    .Values-element {
+        width: 22vw;
+    }
+
+    .History-element { 
+        width: 18vw;
+    }
+
+    .Contact>p {
+        font-size: 1rem; 
+    }
+
+    .history>h4 {
+        font-size: 1.5rem;
+    }
+
+    .history{
+        font-size: 0.7rem;
+    }
+
+    .Stats-element { 
+        width: 18vw;
+    }
+
+    .Stats>p {
+        font-size: 0.8rem;
+    }
+
+    .envelope-animation {
+        width: 20vw;
+    }
+
+    .history-animation {
+        width: 22vw;
+    }
+    
+    .stats-animation {
+        width: 18vw;
+    }
+}
+
+@media only screen and (min-width: 1360px) {
+    .About-element { 
+        width: 19vw;
+    }
+
+    .Contact-element { 
+        width: 19vw;
+    }
+
+    .Services-element {
+        width: 20vw;
+    }
+
+    .Values-element {
+        width: 20vw;
+    }
+
+    .History-element { 
+        width: 17vw;
+    }
+
+    .Stats-element { 
+        width: 17vw;
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .About-element { 
+        width: 18vw;
+    }
+
+    .Contact-element { 
+        width: 18vw;
+    }
+
+    .Services-element {
+        width: 19vw;
+    }
+
+    .Values-element {
+        width: 19vw;
+    }
+
+    .History-element { 
+        width: 16vw;
+    }
+
+    .Stats-element { 
+        width: 16vw;
+    }
+
+    .envelope-animation {
+        width: 17vw;
+    }
+
+    .history-animation {
+        width: 19vw;
+    }
+    
+    .stats-animation {
+        width: 15vw;
+    }
+}
+
+@media only screen and (min-width: 1845px) {
+    .About-element { 
+        width: 15vw;
+    }
+
+    .Contact-element { 
+        width: 15vw;
+    }
+
+    .Services-element {
+        width: 17.2vw;
+    }
+
+    .Values-element {
+        width: 17.2vw;
+    }
+
+    .History-element { 
+        width: 14.2vw;
+    }
+
+    .Stats-element { 
+        width: 14.2vw;
+    }
+
+    .envelope-animation {
+        width: 14vw;
+    }
+
+    .history-animation {
+        width: 15vw;
+    }
+    
+    .stats-animation {
+        width: 10vw;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .About-element { 
+        width: 14vw;
+    }
+
+    .Contact-element { 
+        width: 14vw;
+    }
+
+    .Services-element {
+        width: 15.8vw;
+    }
+
+    .Values-element {
+        width: 15.8vw;
+    }
+
+    .History-element { 
+        width: 13vw;
+    }
+
+    .Stats-element { 
+        width: 13vw;
+    }
+}
+
+@media only screen and (min-width: 2200px) {
+    .Services-element {
+        width: 14vw;
+    }
+
+    .Values-element {
+        width: 14vw;
+    }
+
+    .History-element { 
+        width: 12vw;
+    }
+
+    .Stats-element { 
+        width: 12vw;
+    }
+}
+
+@media only screen and (min-width: 2400px) {
+    .Services-element {
+        width: 13vw;
+    }
+
+    .Values-element {
+        width: 13vw;
+    }
+
+    .History-element { 
+        width: 10.5vw;
+    }
+
+    .Stats-element { 
+        width: 10.5vw;
+    }
+}
+
+@media only screen and (min-width: 2600px) {
+    .About-element { 
+        width: 12vw;
+    }
+
+    .Contact-element { 
+        width: 12vw;
+    }
+
+    .Services-element {
+        width: 12vw;
+    }
+
+    .Values-element {
+        width: 12vw;
+    }
+
+    .History-element { 
+        width: 10vw;
+    }
+
+    .Stats-element { 
+        width: 10vw;
+    }
+
+    .envelope-animation {
+        width: 12vw;
+    }
+
+    .history-animation {
+        width: 13vw;
+    }
+    
+    .stats-animation {
+        width: 8vw;
+    }
+
+    .About-icons {
+        font-size: 3.5rem;
+    }
+
+    .About-icon:hover{
+        color: #E88ED3;
+        font-size: 4.2rem;
+    }
+}
+
+@media only screen and (min-width: 2800px) {
+    .About-element { 
+        width: 10vw;
+    }
+
+    .Contact-element { 
+        width: 10vw;
+    }
+
+    .Services-element {
+        width: 11vw;
+    }
+
+    .Values-element {
+        width: 11vw;
+    }
+
+    .History-element { 
+        width: 9vw;
+    }
+
+    .Stats-element { 
+        width: 9vw;
+    }
+
+    .envelope-animation {
+        width: 10vw;
+    }
+
+    .history-animation {
+        width: 10vw;
+    }
+    
+    .stats-animation {
+        width: 7vw;
+    }
+}
+
+@media only screen and (min-width: 3200px) {
+    .About-element { 
+        width: 9vw;
+    }
+
+    .Contact-element { 
+        width: 9vw;
+    }
+
+    .Services-element {
+        width: 9vw;
+    }
+
+    .Values-element {
+        width: 9vw;
+    }
+
+    .History-element { 
+        width: 7vw;
+    }
+
+    .Stats-element { 
+        width: 7vw;
+    }
+
+    .envelope-animation {
+        width: 9vw;
+    }
+
+    .history-animation {
+        width: 10vw;
+    }
+    
+    .stats-animation {
+        width: 5vw;
+    }
+
+    .About-icon {
+        margin: 0.5vw;
+    }
+
+    .About-icons {
+        font-size: 3rem;
+    }
+
+    .About-icon:hover{
+        color: #E88ED3;
+        font-size: 3.5rem;
+    }
+}
+
+@media only screen and (min-width: 3900px) {
+    .About-element { 
+        width: 7vw;
+    }
+
+    .Contact-element { 
+        width: 7vw;
+    }
+
+    .Services-element {
+        width: 7vw;
+    }
+
+    .Values-element {
+        width: 7vw;
+    }
+
+    .History-element { 
+        width: 5vw;
+    }
+
+    .Stats-element { 
+        width: 5vw;
+    }
+
+    .envelope-animation {
+        width: 7vw;
+    }
+
+    .history-animation {
+        width: 8vw;
+    }
+    
+    .stats-animation {
+        width: 5vw;
+    }
+
+    .About-icon {
+        margin: 0.5vw;
+    }
+
+    .About-icons {
+        font-size: 3rem;
+    }
+
+    .About-icon:hover{
+        color: #E88ED3;
+        font-size: 3.5rem;
+    }
+
+}
+
+@media only screen and (min-width: 5000px) {
+    .About-element { 
+        width: 7vw;
+    }
+
+    .Contact-element { 
+        width: 7vw;
+    }
+
+    .Services-element {
+        width: 6.5vw;
+    }
+
+    .Values-element {
+        width: 6.5vw;
+    }
+
+    .History-element { 
+        width: 5vw;
+    }
+
+    .Stats-element { 
+        width: 5vw;
+    }
+
+    .envelope-animation {
+        width: 7vw;
+    }
+
+    .history-animation {
+        width: 7vw;
+    }
+    
+    .stats-animation {
+        width: 4.5vw;
+    }
+
+    .About-icon {
+        margin: 0.3vw;
+    }
+
+}
