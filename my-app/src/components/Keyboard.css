@@ -132,6 +132,12 @@
     font-size: x-large;
 }
 
+.available {
+    font-weight: 700;
+    font-size: 22px;
+    color: #797979;
+}
+
 .btn-2 {
     border: none;
     border-radius: 50px;
