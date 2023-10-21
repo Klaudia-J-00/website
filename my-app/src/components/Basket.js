@@ -65,21 +65,9 @@ function Basket() {
                             <div className='col-3 text-center'><img src={item.image}  className="product-image-basket img-fluid" alt={item.title} /></div>
                             <div className='col-3 text-center'><Link to={`/products/${item.product}`}>{item.title}</Link></div>
                             <div className='col-2 text-center'>
-                                <button className='plus_button' onClick={() => { // -1 
-                                    const newQty = item.qty - 1;
-                                    if (newQty >= 1) {
-                                        dispatch(addToCart(item.product, newQty));
-                                    }
-                                }}>-</button>
                                 <input className='qty-input' type='number' min="1" max={item.countInStock} value={item.qty} onChange={(e) => {
                                     dispatch(addToCart(item.product, Number(e.target.value)));
                                 }} />
-                                <button className='plus_button' onClick={() => { // +1
-                                    const newQty = item.qty + 1; 
-                                    if (newQty <= item.countInStock) {
-                                        dispatch(addToCart(item.product, newQty));
-                                    }
-                                }}>+</button>
                             </div>
                             <div className='col-2 text-center'>{item.price} zł</div>
                             <div className='col-2 text-center remove' onClick={() => removeFromCartHandle(item.product)}>X</div>

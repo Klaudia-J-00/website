@@ -12,6 +12,7 @@ import Basket from './components/Basket';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Login from './components/Login';
+import Register from './components/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,7 +27,8 @@ root.render(
         <Route path="/basket/:id?" element={<Basket />} />
         <Route path="/keyboard" element={<Keyboard />} />
         <Route path='/products/:id'element={<SingleProduct/>} />
-        <Route path='login' element={<Login/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
       </Routes>
     </Router>
   </Provider>

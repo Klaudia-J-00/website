@@ -1,18 +1,26 @@
 import './Login.css'
 import { Link } from 'react-router-dom';
 
-function Login() {
+function Register() {
     return (
         <div className='container'>
             <div className="row">
                 <div className="col-5 login">
-                    <img className='img-fluid pt-3 pb-3 px-2' src='../img/login_backdrop.jpg' alt="Login Backdrop" />
+                    <img className='img-fluid pt-3 pb-3 px-2' src='../img/login_backdrop2.jpg' alt="Login Backdrop" />
                 </div>
                 <div className="col-7 login text-center">
-                    <h5 className='header-login'>LOGOWANIE</h5>
+                    <h5 className='header-login'>REJESTRACJA</h5>
                     <div className="row justify-content-center">
                         <div className="col-6 login-form">
                         <form onSubmit=''>
+                            <div className="form-group">
+                                <label htmlFor="name" className="col-sm-3 col-form-label">imię</label>
+                                <input type="text" className="form-control" id="name" placeholder="Wprowadź imię" required />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="surname" className="col-sm-3 col-form-label">nazwisko</label>
+                                <input type="text" className="form-control" id="surname" placeholder="Wprowadź nazwisko" required />
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="email" className="col-sm-3 col-form-label">e-mail</label>
                                 <input type="email" className="form-control" id="email" placeholder="Wprowadź e-mail" required />
@@ -27,7 +35,7 @@ function Login() {
                                     <button type="submit" className="btn btn-login">ZALOGUJ SIĘ</button>
                                 </div>
                             </div>
-                        
+                                                
                         </form>
                         </div>
                     </div>
@@ -60,4 +68,4 @@ function Login() {
     );
 }
   
-export default Login;
+export default Register;

@@ -44,12 +44,6 @@
  margin-left: 15px
 }
 
-.circle-1:hover, .circle-2:hover, .circle-3:hover {
-    border: 3px solid #000000;
-    border-radius: 15px;
-    font-size: 18px;
-}
-
 .circle-2 {
     color: #E88ED3;
     margin-left: 15px
