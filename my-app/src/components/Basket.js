@@ -71,7 +71,7 @@ function Basket() {
                             </div>
                             <div className='col-2 text-center'>{item.price} zł</div>
                             <div className='col-2 text-center remove' onClick={() => removeFromCartHandle(item.product)}>X</div>
-                            <hr className='line'></hr>
+                            <hr className='line my-2'></hr>
                         </div> 
                         ))
                     }

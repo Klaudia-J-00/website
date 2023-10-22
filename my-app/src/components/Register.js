@@ -5,10 +5,10 @@ function Register() {
     return (
         <div className='container'>
             <div className="row">
-                <div className="col-5 login">
+                <div className="col-5 d-none d-md-block login">
                     <img className='img-fluid pt-3 pb-3 px-2' src='../img/login_backdrop2.jpg' alt="Login Backdrop" />
                 </div>
-                <div className="col-7 login text-center">
+                <div className="col-sm-12 col-md-7 login text-center">
                     <h5 className='header-login'>REJESTRACJA</h5>
                     <div className="row justify-content-center">
                         <div className="col-6 login-form">
@@ -59,7 +59,7 @@ function Register() {
                     </div>
 
                     <div className="row">
-                        <p>Nie masz jeszcze konta? <Link to='/register' className='link'>Zarejestruj się</Link></p>
+                        <p>Masz już konto? <Link to='/login' className='link'>Zaloguj się</Link></p>
                     </div>
 
                 </div>
