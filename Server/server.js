@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import connectDatabase from "./config/MongoDb.js";
 import ImportData from "./DataImport.js";
 import productRoute from "./Routes/ProductRoutes.js";
+import userRoute from "./Routes/UserRoutes.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
 
 dotenv.config()

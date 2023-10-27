@@ -1,0 +1,49 @@
+.profile {
+    background-color: #BDBDBD;
+    padding: 50px;
+    margin-top: 30px;
+}
+
+h3 {
+    margin-top: 20px;
+    font-weight: 900;
+}
+
+.bolder {
+    font-weight: 700;
+}
+
+.img-profile {
+    border-radius: 33px;
+    border: 3px solid black; 
+    width: 80%;
+    margin-left: 20%;
+}
+
+.btn-logout {
+    font-weight: 900;
+    font-size: 1.2em;
+}
+
+.paragraph-edit {
+    margin-bottom: 40px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .img-profile {
+        display: none;
+    }
+
+    .paragraph-edit {
+        margin-bottom: 65px;
+    }
+  }
+
+  
+@media only screen and (max-width: 1400px) {
+    .paragraph-edit {
+        margin-bottom: 65px;
+    }
+  }
+  

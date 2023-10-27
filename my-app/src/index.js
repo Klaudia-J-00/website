@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Login from './components/Login';
 import Register from './components/Register';
+import Profile from './components/Profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -29,6 +30,8 @@ root.render(
         <Route path='/products/:id'element={<SingleProduct/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
+        <Route path="*" element={<h1>404</h1>} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
     </Router>
   </Provider>

@@ -58,3 +58,10 @@
     color: #6d6d6d;
     font-weight: 900;
 }
+
+.alert {
+    background-color: #6d6d6d;
+    font-weight: 700;
+    border-radius: 33px;
+    border: 1px solid transparent;
+}
