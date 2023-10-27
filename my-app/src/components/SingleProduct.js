@@ -1,4 +1,4 @@
-import './Keyboard.css';
+import './style/Keyboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faCaretUp, faCaretDown, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import Carousel from 'react-bootstrap/Carousel';

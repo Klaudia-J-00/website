@@ -63,6 +63,10 @@
   right: 0.4rem;
 }
 
+.logged-in {
+  color: #E88ED3!important;
+  font-size: 1.2rem!important;
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 320px) {

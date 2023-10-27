@@ -1,4 +1,4 @@
-import './Keyboard.css';
+import './style/Keyboard.css';
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
