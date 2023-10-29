@@ -88,7 +88,7 @@ userRoute.get(
 );
 
 //update profile
-userRoute.post(
+userRoute.put(
     "/profile",
     protect,
     asyncHandler(async (req, res) => {

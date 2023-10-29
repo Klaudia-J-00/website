@@ -14,6 +14,8 @@ import store from './Redux/store';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import Delivery from './components/Delivery';
+import Payment from './components/Payment';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -32,6 +34,9 @@ root.render(
         <Route path='/register' element={<Register/>} />
         <Route path="*" element={<h1>404</h1>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/delivery" element={<Delivery />} />
+        <Route path='/payment' element={<Payment />} />
+        <Route path='/placeorder' element={<h1>placeorder</h1>} />
       </Routes>
     </Router>
   </Provider>
