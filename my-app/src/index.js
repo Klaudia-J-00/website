@@ -16,6 +16,8 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import Delivery from './components/Delivery';
 import Payment from './components/Payment';
+import PlaceOrder from './components/PlaceOrder';
+import Order from './components/Order';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -36,7 +38,8 @@ root.render(
         <Route path="/profile" element={<Profile/>} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path='/payment' element={<Payment />} />
-        <Route path='/placeorder' element={<h1>placeorder</h1>} />
+        <Route path='/placeorder' element={<PlaceOrder />} />
+        <Route path='/order' element={<Order />} />
       </Routes>
     </Router>
   </Provider>
