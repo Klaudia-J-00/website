@@ -29,6 +29,20 @@ h3 {
     margin-bottom: 40px;
 }
 
+.link-payment {
+    text-decoration: none;
+    color: black;
+}
+
+.delivery {
+    border-radius: 33px;
+    border: 2px solid black;
+}
+
+.shipment-data {
+    font-weight: 700;
+    margin-bottom: 30px;
+}
 
 @media only screen and (max-width: 768px) {
     .img-profile {

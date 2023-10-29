@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./style/Profile.css";
 import React, { useEffect, useState } from "react";
-import { logout, getUserDetails } from "../Redux/Actions/UserActions";
+import { logout, getUserDetails, updateUserProfile } from "../Redux/Actions/UserActions";
 import moment from "moment";
 import "moment/locale/pl";
 import Toast from '../components/LoadingError/Toast'
@@ -48,6 +48,9 @@ const Profile = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { loading: updateLoading } = userUpdateProfile
+
   //log out
   const logoutHandler = () => {
     dispatch(logout());
@@ -71,10 +74,14 @@ const Profile = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toastId.current = toast.error("Hasła nie są takie same", Toastobjects);
+      if (!toast.isActive(toastId.current)){ //prevents from creating multiple toasts
+        toastId.current = toast.error("Hasła nie są takie same", Toastobjects);
+      }
     } else {
-      //dispatch update profile
-      alert("Zmiany zostały zapisane");
+      dispatch(updateUserProfile({ id: user._id, name, surname, email, password }))
+      if (!toast.isActive(toastId.current)){ //prevents from creating multiple toasts
+        toastId.current = toast.success("Profil zaaktualizowany", Toastobjects);
+      }
     }
   };
 
@@ -156,6 +163,9 @@ const Profile = () => {
               }
               {
                 loading && <Loading />
+              }
+              {
+                updateLoading && <Loading />
               }
               <form className="" onSubmit={submitHandler}>
                 <Toast />
