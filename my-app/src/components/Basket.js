@@ -16,6 +16,7 @@ function Basket() {
 
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
+    const userLogin = useSelector((state) => state.userLogin);
 
     const total = cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)
     const total_with_shipping = (Number(total) + 12.99).toFixed(2);
@@ -28,7 +29,11 @@ function Basket() {
 
     const checkOutHandler = (e) => {
         e.preventDefault()
-        navigate('/login?redirect=shipping')
+        if(userLogin.userInfo){
+            navigate('/delivery')
+        } else {
+            navigate('/login?redirect=delivery')
+        }
     }
 
     const removeFromCartHandle = (e) => {
@@ -61,8 +66,8 @@ function Basket() {
                     {/*cart item */}
                     {
                         cartItems.map(item => (
-                           <div className='row particular-product align-items-center'>
-                            <div className='col-3 text-center'><img src={item.image}  className="product-image-basket img-fluid" alt={item.title} /></div>
+                           <div className='row particular-product align-items-center' key={item.id}>
+                            <div className='col-3 text-center'><img src={item.image_src}  className="product-image-basket img-fluid" alt={item.title} /></div>
                             <div className='col-3 text-center'><Link to={`/products/${item.product}`}>{item.title}</Link></div>
                             <div className='col-2 text-center'>
                                 <input className='qty-input' type='number' min="1" max={item.countInStock} value={item.qty} onChange={(e) => {

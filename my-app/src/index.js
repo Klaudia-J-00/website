@@ -39,7 +39,7 @@ root.render(
         <Route path="/delivery" element={<Delivery />} />
         <Route path='/payment' element={<Payment />} />
         <Route path='/placeorder' element={<PlaceOrder />} />
-        <Route path='/order' element={<Order />} />
+        <Route path='/order/:id' element={<Order />} />
       </Routes>
     </Router>
   </Provider>

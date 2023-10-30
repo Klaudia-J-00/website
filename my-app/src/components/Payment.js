@@ -16,8 +16,7 @@ const Payment = () => {
     navigate("/delivery");
   }
 
-  const [paymentMethod, setPaymentMethod] = useState("");
-
+  const [paymentMethod, setPaymentMethod] = useState(localStorage.getItem("paymentMethod") || "");
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));

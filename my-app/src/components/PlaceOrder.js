@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style/PlaceOrder.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,14 +8,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/LoadingError/Error";
+import { useEffect, useState } from "react";
+import { ORDER_CREATE_RESET } from "../Redux/Constants/OrderConstants";
+import { createOrder } from "../Redux/Actions/OrderActions";
 
 const PlaceOrder = () => {
   window.scrollTo(0, 0);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const userLogin = useSelector((state) => state.userLogin);
-  const paymentMethod = localStorage.getItem("paymentMethod");
+  const [paymentMethod, setPaymentMethod] = useState("");
+
+  console.log('CART',cart)
+
+  useEffect(() => {
+    const storedPaymentMethod = localStorage.getItem("paymentMethod");
+    setPaymentMethod(storedPaymentMethod)
+  }, []);
 
   //calculate prices
   const addDecimals = (num) => {
@@ -29,8 +40,39 @@ const PlaceOrder = () => {
 
   const { userInfo } = userLogin;
 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  useEffect(() => { 
+    if (success) {
+      navigate(`/order/${order._id}`)
+      dispatch({type: "ORDER_CREATE_RESET"})
+    }
+  }, [navigate, dispatch, success, order, paymentMethod])
+
+
   const placeOrderHandler = (e) => {
-    e.preventDefault();
+    dispatch(createOrder({
+      orderItems: cart.cartItems.map((item) => ({
+        product: item.product,
+        title: item.title,
+        price: item.price,
+        qty: item.qty,
+        image_src: item.image_src, // Use 'image_src' instead of 'image'
+      })),
+      shippingAddress: {
+        address: cart.shippingAddress.address,
+        city: cart.shippingAddress.city,
+        postalCode: cart.shippingAddress.postalCode,
+        phoneNumber: cart.shippingAddress.phoneNumber,
+      },
+      paymentMethod: paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice,
+    }))
+    
   };
 
   return (
@@ -71,8 +113,7 @@ const PlaceOrder = () => {
                   <b>Dostawa:</b> DHL
                 </p>
                 <p className="credentials">
-                  <b>Płatność:</b>{" "}
-                  {paymentMethod === "cash" ? "Gotówka" : "Przelew"}
+                  <b>Płatność:</b> {paymentMethod.trim() === '"cash"' ? "Gotówka" : "Przelew"}
                 </p>
                 <p className="credentials">
                   <b>Numer telefonu:</b> {cart.shippingAddress.phoneNumber}
@@ -109,7 +150,7 @@ const PlaceOrder = () => {
                   <div className="row particular-product align-items-center">
                     <div className="col-3 text-center">
                       <img
-                        src={item.image}
+                        src={item.image_src}
                         className="product-image-basket img-fluid"
                         alt={item.title}
                       />
@@ -123,7 +164,7 @@ const PlaceOrder = () => {
                     </div>
                     <div className="col-2 text-center">
                       <h6>SUMA CZĘŚCIOWA</h6>
-                      {item.qty * item.price} zł
+                      {(item.qty * item.price).toFixed(2)} zł
                     </div>
                     <hr className="line-two my-2"></hr>
                   </div>
@@ -165,6 +206,9 @@ const PlaceOrder = () => {
                 </div>
               </>
             )}
+            {
+              error && <Message variant="alert-danger">{error}</Message>
+            }
           </div>
         </div>
       </div>
