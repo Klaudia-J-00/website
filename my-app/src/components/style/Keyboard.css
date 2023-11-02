@@ -38,21 +38,74 @@
     padding-right: 35px;
     padding-bottom: 2px;
 }
+ /* COLORS */
 
-.circle-1 {
+.white {
  color: #fff;
  margin-left: 15px
 }
 
-.circle-2 {
+.pink {
     color: #E88ED3;
     margin-left: 15px
 }
 
-.circle-3 {
+.blue {
     color: #7EB7E3;
     margin-left: 15px
 }
+
+.orange {
+    color: #AF3C22;
+    margin-left: 15px
+   }
+
+   .teal {
+    color: #195E67;
+    margin-left: 15px
+   }
+
+   .gray {
+    color: #8D8D8D;
+    margin-left: 15px
+   }
+
+   .turquoise {
+    color: #37D9CF;
+    margin-left: 15px
+   }
+
+   .black {
+    color: #262626;
+    margin-left: 15px
+   }
+
+   .red-2 {
+    color: #712727;
+    margin-left: 15px
+   }
+
+   .gold {
+    color: #FFC37D;
+    margin-left: 15px
+   }
+
+   .green-2 {
+    color: #94B276;
+    margin-left: 15px
+   }
+
+   .light-green {
+    color: #E5F8D2;
+    margin-left: 15px
+   }
+
+   .purple {
+    color: #D9B5F5;
+    margin-left: 15px
+   }
+
+
 
 .vote-arrows {
     display: flex;
@@ -147,6 +200,13 @@
     color: #fff;
     background-color: #7EB7E3;
 }
+
+
+  .magnifying {
+    color: #E88ED3;
+    margin: 12px;
+    font-size: 1.5em;
+  }
 
 @media only screen and (max-width: 770px) {
     .products-pc {

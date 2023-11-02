@@ -54,3 +54,64 @@
     text-align: center;
     align-items: center;
 }
+
+/* Media queries for mobile devices */
+@media only screen and (max-width: 600px) {
+    .header {
+        font-size: 20vw;
+        padding: 0px 20px;
+        padding-top: 20px;
+    }
+    
+    .header-row {
+        padding: 0px 20px;
+        padding-top: 30px;
+    }
+    
+    .total-price {
+        right: -20%;
+    }
+    
+    .total-price-sum {
+        right: -10%;
+    }
+    
+    .total-price-with-customs {
+        font-size: 4vw;
+    }
+    
+    .blue-bg {
+        padding: 20px;
+    }
+}
+
+/* Media queries for tablet devices */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .header {
+        font-size: 14vw;
+        padding: 0px 40px;
+        padding-top: 25px;
+    }
+    
+    .header-row {
+        padding: 0px 40px;
+        padding-top: 40px;
+    }
+    
+    .total-price {
+        right: -25%;
+    }
+    
+    .total-price-sum {
+        right: -15%;
+    }
+    
+    .total-price-with-customs {
+        font-size: 3vw;
+    }
+    
+    .blue-bg {
+        padding: 25px;
+    }
+}
+

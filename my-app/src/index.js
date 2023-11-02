@@ -18,6 +18,7 @@ import Delivery from './components/Delivery';
 import Payment from './components/Payment';
 import PlaceOrder from './components/PlaceOrder';
 import Order from './components/Order';
+import PrivateRouter from './PrivateRouter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,7 +27,7 @@ root.render(
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Hero gltfPath="/keyboard2.glb" />} />
+        <Route path="/" element={<Hero gltfPath="/keyboard2.glb" />} exact/>
         <Route path="/about" element={<About />} />
         <Route path="/personalization" element={<Personalization />} />
         <Route path="/basket/:id?" element={<Basket />} />
@@ -35,11 +36,15 @@ root.render(
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
         <Route path="*" element={<h1>404</h1>} />
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/delivery" element={<Delivery />} />
-        <Route path='/payment' element={<Payment />} />
-        <Route path='/placeorder' element={<PlaceOrder />} />
-        <Route path='/order/:id' element={<Order />} />
+        <Route path="/search/:keyword" element={<Keyboard />} />
+        {/* private routes (they will be shown to u only if u are logged in) */}
+        <Route path='/' element={<PrivateRouter />} >
+          <Route path='/profile' element={<Profile />} />
+          <Route path="/delivery" element={<Delivery />} />
+          <Route path='/payment' element={<Payment />} />
+          <Route path='/placeorder' element={<PlaceOrder />} />
+          <Route path='/order/:id' element={<Order />} />
+        </Route>
       </Routes>
     </Router>
   </Provider>

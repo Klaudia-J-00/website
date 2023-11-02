@@ -69,9 +69,33 @@ const SingleProduct = () => {
                         <div className="col-10 product-info">
                             <h2 className="product-title">{product.title}</h2>
                             <h4 className="product-color">3 kolory
-                            <FontAwesomeIcon icon={faCircle} size="sm" className='circle-1'/>
-                            <FontAwesomeIcon icon={faCircle} size="sm" className='circle-2'/> 
-                            <FontAwesomeIcon icon={faCircle} size="sm" className='circle-3'/></h4>
+                            {Array.isArray(product.color) && product.color.length >= 3 ? (
+                            <>
+                            <FontAwesomeIcon icon={faCircle} size="sm" className={
+                                            product.color[0] === "white" ? "white" :
+                                            product.color[0] === "black" ? "black" :
+                                            product.color[0] === "green" ? "green-2" :
+                                            "white"
+                                        }/>
+                                        <FontAwesomeIcon icon={faCircle} size="sm" className={
+                                            product.color[1] === "pink" ? "pink" :
+                                            product.color[1] === "orange" ? "orange" :
+                                            product.color[1] === "gray" ? "gray" :
+                                            product.color[1] === "red" ? "red-2" :
+                                            product.color[1] === "light_green" ? "light-green" :
+                                            "white"
+                                        }/> 
+                                        <FontAwesomeIcon icon={faCircle} size="sm" className={
+                                            product.color[2] === "blue" ? "blue" :
+                                            product.color[2] === "teal" ? "teal" :
+                                            product.color[2] === "turquoise" ? "turquoise" :
+                                            product.color[2] === "gold" ? "gold" :
+                                            product.color[2] === "purple" ? "purple" :
+                                            "white"
+                                        }/> 
+                                        </>
+                                    ) : null}
+                                </h4>
                             <h4 className="product-color">Status: {product.countInStock > 0 ? 
                             (<span>dostępny</span>) : (<span>niedostępny</span>)
                         }</h4>
@@ -129,12 +153,6 @@ const SingleProduct = () => {
 
                 <div className='row products-mobile'>
                     <Table striped>
-                        <thead>
-                            <tr>
-                            <th></th>
-                            <th></th>
-                            </tr>
-                        </thead>
                         <tbody>
                             <tr>
                                 <td>Switche</td>

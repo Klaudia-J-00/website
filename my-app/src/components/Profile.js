@@ -9,6 +9,8 @@ import Message from '../components/LoadingError/Error'
 import Loading from '../components/LoadingError/Loading'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { listMyOrders } from "../Redux/Actions/OrderActions";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   window.scrollTo(0, 0);
@@ -51,6 +53,9 @@ const Profile = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { loading: updateLoading } = userUpdateProfile
 
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { loading: lodingOrders , error: errorOrders , orders } = orderListMy;
+
   //log out
   const logoutHandler = () => {
     dispatch(logout());
@@ -58,6 +63,7 @@ const Profile = () => {
 
   // Fetch user details when the component mounts
   useEffect(() => {
+    dispatch(listMyOrders())
     dispatch(getUserDetails("profile"));
   }, [dispatch, userInfo]);
 
@@ -109,7 +115,7 @@ const Profile = () => {
               <p>E-mail:</p>
               <p>Dołączono:</p>
             </div>
-            <div className="col-6 col-md-3 text-end">
+            <div className="col-6 col-md-3 text-end paragraph-info">
               <p>⠀</p>
               <p>⠀</p>
               <p className="bolder">{userInfo.name}</p>
@@ -136,7 +142,7 @@ const Profile = () => {
               </div>
               <div className="col-md-6">
                 <button className="btn" onClick={handleOrdersClick}>
-                  ZAMÓWIENIA
+                  ZAMÓWIENIA <span className="orders-count">{orders ? orders.length : 0}</span>
                 </button>
               </div>
             </div>
@@ -249,24 +255,40 @@ const Profile = () => {
           <div className="row row-profile-orders">
             <div className="col-md-12 mb-5">
               <h5>Twoje zamówienia:</h5>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>ID ZAMÓWIENIA</th>
-                    <th>STATUS</th>
-                    <th>DATA</th>
-                    <th>KWOTA</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Zrealizowane</td>
-                    <td>01/01/2022</td>
-                    <td>100.00 zł</td>
-                  </tr>
-                </tbody>
-              </table>
+              { loading ? (<Loading />) : error ? (<Message variant='alert-danger'>{error}</Message>) : 
+              ( 
+                <>
+                {orders.length === 0 ? (<h5>Brak zamówień <Link to='/keyboard'>zrób zakupy!</Link></h5>) : 
+                (
+                  <>
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>ID ZAMÓWIENIA</th>
+                          <th>STATUS</th>
+                          <th>DATA</th>
+                          <th>KWOTA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {orders.map((order) => (
+                          <tr className={`${order.isPaid ? "green-order" : "red-order"}`} key={order._id}>
+                            <td><a href={`/order/${order._id}`}>{order._id}</a></td>
+                            <td>{order.isPaid ? <>Opłacone</> : <>Nieopłacone</>}</td>
+                            <td>{order.isPaid ? moment(order.paidAt).calendar() : moment(order.createdAt).calendar()}</td>
+                            <td>{order.totalPrice} zł</td>
+                          </tr>
+                        )
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                  </>
+                )}
+                </>
+              )}
+              
             </div>
             <div className="row text-center">
               <div className="col-md-12">

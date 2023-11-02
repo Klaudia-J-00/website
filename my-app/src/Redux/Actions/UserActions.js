@@ -1,3 +1,5 @@
+import { CART_RESET_SHIPPING_ADDRESS } from "../Constants/CartConstants"
+import { ORDER_LIST_MY_RESET } from "../Constants/OrderConstants"
 import { 
     USER_LOGIN_FAIL, 
     USER_LOGIN_REQUEST, 
@@ -13,7 +15,6 @@ import {
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_RESET,
 } from "../Constants/UserConstants"
 import axios from "axios"
 
@@ -55,6 +56,8 @@ export const logout = (email, password) => (dispatch) => {
     localStorage.removeItem("userInfo")
     dispatch({type:USER_LOGOUT})
     dispatch({type:USER_DETAILS_RESET})
+    dispatch({type:ORDER_LIST_MY_RESET})
+    dispatch({type:CART_RESET_SHIPPING_ADDRESS})
     document.location.href = "/login"
 }
 

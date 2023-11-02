@@ -1,77 +1,137 @@
 .btn-circle-two {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    padding: 0;
-    margin-top: 30px;
-    background-color: #E7E7E7;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        padding: 0;
+        margin-top: 30px;
+        background-color: #E7E7E7;
 }
 
 .place-order {
-    background-color: #BDBDBD;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    min-height: 80vh;
+        background-color: #BDBDBD;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        min-height: 80vh;
 }
 
 .place-order-icon {
-    color: #E88ED3;
-    font-size: 2.4em;
+        color: #E88ED3;
+        font-size: 2.4em;
 }
 
 .credentials {
-    margin: 0;
+        margin: 0;
 }
 
 h6 {
-    font-weight: 800;
+        font-weight: 800;
 }
 
 .line-two {
-    margin-top: 30px!important;
-    margin-bottom: 30px!important;
+        margin-top: 30px!important;
+        margin-bottom: 30px!important;
 }
 
 .summary-order {
-    background-color: #d6d6d6
+        background-color: #d6d6d6
 }
 
 th {
-    padding: 20px;
-    border: 2px solid black;
+        padding: 20px;
+        border: 2px solid black;
 }
 
 td {
-    padding: 20px;
-    border: 2px solid black;
+        padding: 20px;
+        border: 2px solid black;
 }
 
 .green {
-    margin-top: 10px;
-    font-weight: 800;
-    color: rgb(104, 104, 104);
-    display: flex;
-    justify-content: center;
-    background-color: rgb(122, 199, 122);
-    padding: 8px;
-    border-radius: 20px;
+        margin-top: 10px;
+        font-weight: 800;
+        color: rgb(104, 104, 104);
+        display: flex;
+        justify-content: center;
+        background-color: rgb(122, 199, 122);
+        padding: 8px;
+        border-radius: 20px;
 }
 
 .red {
-    margin-top: 10px;
-    font-weight: 800;
-    color: rgb(104, 104, 104);
-    display: flex;
-    justify-content: center;
-    background-color: rgb(230, 119, 119);
-    padding: 8px;
-    border-radius: 20px;
+        margin-top: 10px;
+        font-weight: 800;
+        color: rgb(104, 104, 104);
+        display: flex;
+        justify-content: center;
+        background-color: rgb(230, 119, 119);
+        padding: 8px;
+        border-radius: 20px;
 }
 
-.btn-paypal {
-    background-color: white;
+
+.u-paid {
+        font-weight: 900;
+        margin-bottom: 30px;
 }
 
-.btn-transfer {
-    background-color: rgb(63, 143, 17);
+/* Media Queries for Mobile */
+@media only screen and (max-width: 600px) {
+    .btn-circle-two {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .place-order {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-height: 60vh;
+    }
+    
+    .place-order-icon {
+        font-size: 2em;
+    }
+    
+    th, td {
+        padding: 10px;
+    }
+    
+    .green, .red {
+        margin-top: 5px;
+        font-size: 0.8em;
+        padding: 5px;
+    }
+    .info-mobile {
+        text-align: center;
+        margin: 0!important;
+    }
 }
+
+/* Media Queries for Tablets */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .btn-circle-two {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .place-order {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        min-height: 70vh;
+    }
+    
+    .place-order-icon {
+        font-size: 2.2em;
+    }
+    
+    th, td {
+        padding: 15px;
+    }
+    
+    .green, .red {
+        margin-top: 7px;
+        font-size: 1em;
+        padding: 6px;
+    }
+}
+
+

@@ -79,9 +79,9 @@ const PlaceOrder = () => {
     <>
       <div className="container place-order">
         <div className="row order-info m-3">
-          <div className="col-3 m-5">
+          <div className="col-12 col-md-3 m-5 info-mobile">
             <div className="row">
-              <div className="col-4">
+              <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
                 <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
                   <FontAwesomeIcon
                     icon={faCircleUser}
@@ -89,7 +89,7 @@ const PlaceOrder = () => {
                   />
                 </div>
               </div>
-              <div className="col-8">
+              <div className="col-12 col-md-8">
                 <h3 className="mb-3">Klient</h3>
                 <p className="credentials">{userInfo.name}</p>
                 <p className="credentials">{userInfo.surname}</p>
@@ -97,9 +97,9 @@ const PlaceOrder = () => {
               </div>
             </div>
           </div>
-          <div className="col-3 m-5">
+          <div className="col-12 col-md-3 m-5 info-mobile">
             <div className="row">
-              <div className="col-4">
+              <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
                 <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
                   <FontAwesomeIcon
                     icon={faTruck}
@@ -107,7 +107,7 @@ const PlaceOrder = () => {
                   />
                 </div>
               </div>
-              <div className="col-8">
+              <div className="col-12 col-md-8">
                 <h3 className="mb-3">Informacje</h3>
                 <p className="credentials">
                   <b>Dostawa:</b> DHL
@@ -121,9 +121,9 @@ const PlaceOrder = () => {
               </div>
             </div>
           </div>
-          <div className="col-3 m-5">
+          <div className="col-12 col-md-3 m-5 info-mobile">
             <div className="row">
-              <div className="col-4">
+              <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
                 <div className="btn-circle-two col-12 d-flex justify-content-center text-center align-items-center">
                   <FontAwesomeIcon
                     icon={faLocationDot}
@@ -131,7 +131,7 @@ const PlaceOrder = () => {
                   />
                 </div>
               </div>
-              <div className="col-8">
+              <div className="col-12 col-md-8">
                 <h3 className="mb-3">Adres</h3>
                 <p className="credentials">{cart.shippingAddress.address}</p>
                 <p className="credentials">{cart.shippingAddress.city}</p>
@@ -148,21 +148,21 @@ const PlaceOrder = () => {
               {cart.cartItems.map((item, index) => (
                 <div className="col-12 col-md-8 mb-5" key={index}>
                   <div className="row particular-product align-items-center">
-                    <div className="col-3 text-center">
+                    <div className="col-12 col-md-3 text-center m-1">
                       <img
                         src={item.image_src}
                         className="product-image-basket img-fluid"
                         alt={item.title}
                       />
                     </div>
-                    <div className="col-3 text-center">
+                    <div className="col-12 col-md-3 text-center m-1">
                       <Link to={`/products/${item.product}`}>{item.title}</Link>
                     </div>
-                    <div className="col-2 text-center">
+                    <div className="col-12 col-md-2 text-center m-1">
                       <h6>ILOŚĆ</h6>
                       {item.qty}
                     </div>
-                    <div className="col-2 text-center">
+                    <div className="col-12 col-md-2 text-center m-1">
                       <h6>SUMA CZĘŚCIOWA</h6>
                       {(item.qty * item.price).toFixed(2)} zł
                     </div>
