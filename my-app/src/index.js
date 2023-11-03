@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import Navbar from './Navbar';
 import About from './components/About';
@@ -20,32 +20,33 @@ import PlaceOrder from './components/PlaceOrder';
 import Order from './components/Order';
 import PrivateRouter from './PrivateRouter';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
-  <Provider store={store}>
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Hero gltfPath="/keyboard2.glb" />} exact/>
-        <Route path="/about" element={<About />} />
-        <Route path="/personalization" element={<Personalization />} />
-        <Route path="/basket/:id?" element={<Basket />} />
-        <Route path="/keyboard" element={<Keyboard />} />
-        <Route path='/products/:id'element={<SingleProduct/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/register' element={<Register/>} />
-        <Route path="*" element={<h1>404</h1>} />
-        <Route path="/search/:keyword" element={<Keyboard />} />
-        {/* private routes (they will be shown to u only if u are logged in) */}
-        <Route path='/' element={<PrivateRouter />} >
-          <Route path='/profile' element={<Profile />} />
-          <Route path="/delivery" element={<Delivery />} />
-          <Route path='/payment' element={<Payment />} />
-          <Route path='/placeorder' element={<PlaceOrder />} />
-          <Route path='/order/:id' element={<Order />} />
-        </Route>
-      </Routes>
-    </Router>
-  </Provider>
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Hero gltfPath="/keyboard2.glb" />} exact/>
+          <Route path="/about" element={<About />} />
+          <Route path="/personalization" element={<Personalization />} />
+          <Route path="/basket/:id?" element={<Basket />} />
+          <Route path="/keyboard" element={<Keyboard />} />
+          <Route path='/products/:id'element={<SingleProduct/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
+          <Route path="*" element={<h1>404</h1>} />
+          <Route path="/search/:keyword" element={<Keyboard />} />
+          {/* private routes (they will be shown to u only if u are logged in) */}
+          <Route path='/' element={<PrivateRouter />} >
+            <Route path='/profile' element={<Profile />} />
+            <Route path="/delivery" element={<Delivery />} />
+            <Route path='/payment' element={<Payment />} />
+            <Route path='/placeorder' element={<PlaceOrder />} />
+            <Route path='/order/:id' element={<Order />} />
+          </Route>
+        </Routes>
+      </Router>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
