@@ -1,4 +1,52 @@
 .personalize-app {
     width: 100vw;
     height: 87.2vh;
+    --webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.configurator {
+    position: fixed;
+    right: 24px;
+    width: 320px;
+    bottom: 25vh;
+    color: black;
+    padding: 16px;
+}
+
+.configurator-section-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.item-label {
+    font-size: 16px;
+    font-weight: 500;
+    transition: .4s color;
+}
+
+.item-label:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.item.item--active .item-label {
+    color: rgb(110, 110, 110);
+}
+
+.item { 
+    transition: .4s opacity;
+}
+
+.item-color {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: solid 2px #999999;
 }

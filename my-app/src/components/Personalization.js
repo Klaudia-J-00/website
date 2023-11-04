@@ -22,7 +22,7 @@ function Personalization() {
 
               <div className="col-6 col-md-2 personalization-choose">
               <Link to='/'>
-                  <img src="/img/icon_numpad.png" className="img-fluid icon-img"></img>
+                  <img src="/textures/Plastic_001_COLOR.jpg" className="img-fluid icon-img"></img>
                 </Link>
               </div>
 
