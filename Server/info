@@ -1,0 +1,6 @@
+npx gltfjsx public/models/model_name.gltf -> 
+to create model then change the generated import to 
+const { nodes, materials } = useLoader(GLTFLoader, "/models/numpad.gltf");
+and add imports: 
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useLoader } from '@react-three/fiber'

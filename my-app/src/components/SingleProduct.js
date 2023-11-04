@@ -119,7 +119,7 @@ const SingleProduct = () => {
                 </div>
 
                 <div className='products-pc row mt-4'>
-                    <div className='col-12 col-md-4 d-flex justify-content-center product products-switch'>
+                    <div className={`col-12 col-md-4 d-flex justify-content-center product products-switch`}>
                         <div><p className='bigger'>Switche</p>
                         Brązowe switche cechują się delikatnym, ale wyczuwalnym punktem aktywacji 
                         oraz cichym, miękkim dźwiękiem podczas pisania.</div>

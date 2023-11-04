@@ -19,14 +19,16 @@ import Payment from './components/Payment';
 import PlaceOrder from './components/PlaceOrder';
 import Order from './components/Order';
 import PrivateRouter from './PrivateRouter';
+import PersonalizeNumpad from './components/PersonalizeNumpad';
 
-ReactDOM.render(
+
+ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Hero gltfPath="/keyboard2.glb" />} exact/>
+          <Route path="/" element={<Hero gltfPath="models/keyboard2.glb" />} exact/>
           <Route path="/about" element={<About />} />
           <Route path="/personalization" element={<Personalization />} />
           <Route path="/basket/:id?" element={<Basket />} />
@@ -43,9 +45,10 @@ ReactDOM.render(
             <Route path='/payment' element={<Payment />} />
             <Route path='/placeorder' element={<PlaceOrder />} />
             <Route path='/order/:id' element={<Order />} />
-          </Route>
+          </Route><Route path='/personalize-numpad' element={<PersonalizeNumpad />} />
         </Routes>
       </Router>
+      
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

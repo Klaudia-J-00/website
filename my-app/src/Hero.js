@@ -1,7 +1,7 @@
 import './Hero.css';
 import * as THREE from 'three';
 import gsap from 'gsap';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Nav } from 'react-bootstrap';
 
 function Hero(props) {
