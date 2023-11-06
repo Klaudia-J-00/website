@@ -1,6 +1,6 @@
 .personalize-app {
     width: 100vw;
-    height: 91.3vh;
+    height: 87.4vh;
     --webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -12,7 +12,7 @@
 .configurator {
     position: fixed;
     right: 24px;
-    top: 10vh;
+    top: 15vh;
     width: 40vw;
     padding: 24px;
     display: flex;
