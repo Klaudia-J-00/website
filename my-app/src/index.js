@@ -21,8 +21,11 @@ import Order from "./components/Order";
 import PrivateRouter from "./PrivateRouter";
 import PersonalizeNumpad from "./components/PersonalizeNumpad";
 import { CustomizationProvider } from "./components/contexts/Customization";
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
@@ -61,6 +64,5 @@ ReactDOM.render(
         </Routes>
       </Router>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );

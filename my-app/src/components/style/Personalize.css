@@ -1,6 +1,6 @@
 .personalize-app {
     width: 100vw;
-    height: 87.2vh;
+    height: 91.3vh;
     --webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -12,41 +12,117 @@
 .configurator {
     position: fixed;
     right: 24px;
-    width: 320px;
-    bottom: 25vh;
-    color: black;
-    padding: 16px;
-}
-
-.configurator-section-content {
+    top: 10vh;
+    width: 40vw;
+    padding: 24px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 16px;
-    margin-top: 24px;
 }
 
-.item-label {
-    font-size: 16px;
-    font-weight: 500;
-    transition: .4s color;
+.configurator2 {
+    position: fixed;
+    right: 10vw;
+    bottom: 20vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.item-label:hover {
-    opacity: 0.5;
+.configurator__section__title {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: black;
+}
+
+.configurator__section__values {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 16px 0;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s;
+}
+
+.item:hover {
     cursor: pointer;
+    opacity: 0.9;
 }
 
-.item.item--active .item-label {
-    color: rgb(110, 110, 110);
-}
-
-.item { 
-    transition: .4s opacity;
-}
-
-.item-color {
+.item__dot {
     width: 32px;
     height: 32px;
     border-radius: 100%;
-    border: solid 2px #999999;
+    border: solid 2px rgb(0, 0, 0);
 }
+
+.item.item--active .item__dot {
+    border: solid 2px #E88ED3;
+}
+
+.item__label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+}
+
+.item.item--active .item__label {
+    color: #E88ED3;
+}
+
+.some-info-customizer {
+    position: fixed;
+    left: 24px;
+    top: 15vh;
+    width: 40vw;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.legend {
+    width: 20vw;
+}
+
+.img-legend{
+    height: 7vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .configurator {
+        width: 100vw;
+        top: 10vh;
+        left: 10px;
+    }
+    
+    .configurator2 {
+        right: 5vw;
+        bottom: 10vh;
+    }
+
+    .item__dot {
+        width: 15px;
+        height: 15px;
+    }
+
+    .item__label {
+        font-size: 9px;
+    }
+    
+    .some-info-customizer {
+        display: none;
+    }
+}
+  
+
+  

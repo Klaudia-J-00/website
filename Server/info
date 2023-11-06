@@ -4,3 +4,4 @@ const { nodes, materials } = useLoader(GLTFLoader, "/models/numpad.gltf");
 and add imports: 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from '@react-three/fiber'
+npm install --legacy-peer-deps -> to not have issues with versions 
