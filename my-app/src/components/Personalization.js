@@ -21,13 +21,13 @@ function Personalization() {
               </div>
 
               <div className="col-6 col-md-2 personalization-choose">
-              <Link to='/'>
+              <Link to='/personalize'>
                   <img src="/textures/Plastic_001_COLOR.jpg" className="img-fluid icon-img"></img>
                 </Link>
               </div>
 
               <div className="col-6 col-md-2 personalization-choose ">
-              <Link to='/'>
+              <Link to='/personalize'>
                   <img src="/img/icon_numpad.png" className="img-fluid icon-img"></img>
                 </Link>
               </div>

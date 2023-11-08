@@ -1,9 +1,12 @@
 import { useCustomization, colorsForKeyboard } from "../contexts/Customization";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCustomCart } from "../../Redux/Actions/CustomCartActions";
+import { useNavigate } from "react-router-dom";
 
-const Configurator = () => {
+const Configurator = ( {canvasRef} ) => {
   const {
     baseColor,
     setBaseColor,
@@ -15,10 +18,40 @@ const Configurator = () => {
     setKeyOtherColor,
   } = useCustomization();
 
+  const type = "numpad"
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [selectedOption, setSelectedOption] = useState("1");
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
+  };
+
+  const savePhotoHandle = () => {
+    const canvas = canvasRef.current;
+  if (!canvas) {
+    return;
+  }
+
+  const dataURL = canvas.toDataURL("image/png");
+  const a = document.createElement("a");
+  a.href = dataURL;
+  a.download = "canvas_capture.png";
+  a.click();
+  };
+
+  const addToCartHandle = () => {
+    const customProduct = {
+      id: type, 
+      type: selectedOption,
+      baseColor,
+      insideBaseColor,
+      keyColor,
+      keyOtherColor,
+    };
+    dispatch(addToCustomCart(customProduct));
+    navigate('/basket')
   };
 
   return (
@@ -157,7 +190,16 @@ const Configurator = () => {
         )}
       </div>
       <div className="configurator2">
-        <button className="btn">
+      <button 
+      className="btn"
+      onClick={savePhotoHandle}
+      >
+          <FontAwesomeIcon icon={faCamera} size="2x" />
+        </button>
+        <button 
+        className="btn"
+        onClick={addToCartHandle}
+        >
           <FontAwesomeIcon icon={faCartPlus} size="2x" />
         </button>
       </div>
