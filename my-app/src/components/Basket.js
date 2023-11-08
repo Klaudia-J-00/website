@@ -128,7 +128,9 @@ function Basket() {
                   />
                 </div>
                 <div className="col-3 text-center">
-                  <p className="custom-name">{item.type}</p>
+                  <p className="custom-name">
+                    {item.type === "numpad" ? (<>Klawiatura numeryczna</>) : (<>Klawiatura 40%</>)}
+                    </p>
                   <p>Baza klawiatury: <b>{item.baseColor.name}</b> </p>
                   <div className="d-flex justify-content-center mb-3">
                     <div

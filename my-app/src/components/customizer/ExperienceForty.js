@@ -16,7 +16,7 @@ import {
           rotation={[Math.PI / 8, Math.PI / 4, 0]}
         >
           <Stage environment="city" intensity={0.6} castShadow={false}>
-             <Numpad/> 
+            <Forty/> 
           </Stage>
           <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-0.35}>
             <planeGeometry args={[170, 170]}/>

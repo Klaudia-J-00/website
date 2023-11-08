@@ -20,6 +20,7 @@ import PlaceOrder from "./components/PlaceOrder";
 import Order from "./components/Order";
 import PrivateRouter from "./PrivateRouter";
 import PersonalizeNumpad from "./components/PersonalizeNumpad";
+import PersonalizeForty from "./components/PersonalizeForty";
 import { CustomizationProvider } from "./components/contexts/Customization";
 import { createRoot } from 'react-dom/client';
 
@@ -59,6 +60,12 @@ root.render(
               <CustomizationProvider>
                 <PersonalizeNumpad />
               </CustomizationProvider>
+            }
+          />
+          <Route
+            path="/personalize-40"
+            element={
+                <PersonalizeForty />
             }
           />
         </Routes>

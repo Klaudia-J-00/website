@@ -5,20 +5,35 @@ Command: npx gltfjsx@6.2.14 public/models/forty.gltf
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useCustomization } from './contexts/Customization';
 
 const Forty = (props) => {
   const { nodes, materials } = useGLTF('/models/forty.gltf')
+  const { baseColor, insideBaseColor, keyColor, keyOtherColor, keyThirdColor } = useCustomization();
+
   return (
     <group {...props} dispose={null}>
       <group position={[-3.459, 0.326, 1.018]} scale={0.215}>
-        <mesh geometry={nodes.Plane120.geometry} material={materials.Keys1} />
-        <mesh geometry={nodes.Plane120_1.geometry} material={materials.Keys2} />
-        <mesh geometry={nodes.Plane120_2.geometry} material={materials['Material.001']} />
+        <mesh geometry={nodes.Plane120.geometry} >
+          <meshStandardMaterial color={keyColor.color}/>
+        </mesh>
+        <mesh geometry={nodes.Plane120_1.geometry}  >
+          <meshStandardMaterial color={keyThirdColor.color}/> {/* third in the future */}
+        </mesh>
+        <mesh geometry={nodes.Plane120_2.geometry} >
+          <meshStandardMaterial color={keyOtherColor.color}/>
+        </mesh>
       </group>
       <group position={[0.048, 0.238, 0.104]} scale={[3.508, 1.361, 1.361]}>
-        <mesh geometry={nodes.Plane154.geometry} material={materials.Base2} />
-        <mesh geometry={nodes.Plane154_1.geometry} material={materials.Base} />
-        <mesh geometry={nodes.Plane154_2.geometry} material={materials.Base} />
+        <mesh geometry={nodes.Plane154.geometry} >
+          <meshStandardMaterial color={insideBaseColor.color}/>
+        </mesh>
+        <mesh geometry={nodes.Plane154_1.geometry} >
+          <meshStandardMaterial color={baseColor.color}/>
+        </mesh>
+        <mesh geometry={nodes.Plane154_2.geometry} >
+          <meshStandardMaterial color={baseColor.color}/>
+        </mesh>
       </group>
       <mesh geometry={nodes.Text060.geometry} material={materials.text} position={[2.691, 0.874, -0.86]} scale={0.075} />
     </group>

@@ -102,6 +102,7 @@ export const CustomizationProvider = (props) => {
     const [insideBaseColor, setInsideBaseColor] = useState(colorsForKeyboard[9]);
     const [keyColor, setKeyColor] = useState(colorsForKeyboard[0]);
     const [keyOtherColor, setKeyOtherColor] = useState(colorsForKeyboard[5]);
+    const [keyThirdColor, setKeyThirdColor] = useState(colorsForKeyboard[8]);
 
     return <CustomizationContext.Provider 
         value={{
@@ -113,6 +114,8 @@ export const CustomizationProvider = (props) => {
             setKeyColor,
             keyOtherColor,
             setKeyOtherColor,
+            keyThirdColor,
+            setKeyThirdColor
     }}>
         {props.children}
     </CustomizationContext.Provider>
