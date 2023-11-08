@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCustomCart } from "../../Redux/Actions/CustomCartActions";
+import { addToCustomCart } from "../../Redux/Actions/CartActions";
 import { useNavigate } from "react-router-dom";
 
 const Configurator = ( {canvasRef} ) => {
@@ -19,6 +19,8 @@ const Configurator = ( {canvasRef} ) => {
   } = useCustomization();
 
   const type = "numpad"
+  const price = 299.99 
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,21 +32,28 @@ const Configurator = ( {canvasRef} ) => {
 
   const savePhotoHandle = () => {
     const canvas = canvasRef.current;
-  if (!canvas) {
-    return;
-  }
+    if (!canvas) {
+      return;
+    }
 
-  const dataURL = canvas.toDataURL("image/png");
-  const a = document.createElement("a");
-  a.href = dataURL;
-  a.download = "canvas_capture.png";
-  a.click();
+    const dataURL = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = dataURL;
+    a.download = "canvas_capture.png";
+    a.click();
   };
+
+  const randomId = () => {
+    return Math.random().toString(36).substr(2, 9);
+  }
 
   const addToCartHandle = () => {
     const customProduct = {
-      id: type, 
-      type: selectedOption,
+      product: "custom",
+      id: randomId(), 
+      type: type,
+      price: price,
+      qty: 1,
       baseColor,
       insideBaseColor,
       keyColor,

@@ -3,37 +3,58 @@ import {
     CART_ADD_ITEM, 
     CART_REMOVE_ITEM, 
     CART_SAVE_SHIPPING_ADDRESS,
-    CART_SAVE_PAYMENT_METHOD
+    CART_SAVE_PAYMENT_METHOD,
+    CART_ADD_CUSTOM_ITEM,
+    CART_REMOVE_CUSTOM_ITEM
  } from "../Constants/CartConstants";
 
-//ADD TO CART
-export const addToCart = (id, qty) => async (dispatch, getState) => { 
-    const {data} = await axios.get(`/api/products/${id}`)
+ export const addToCart = (id, qty) => async (dispatch, getState) => {
+  const { data } = await axios.get(`/api/products/${id}`);
+  
+  const item = {
+    product: data._id,
+    title: data.title,
+    image_src: data.image_src,
+    price: data.price,
+    countInStock: data.countInStock,
+    qty,
+  };
 
-    dispatch({
-        type: CART_ADD_ITEM,
-        payload: {
-            product: data._id,
-            title: data.title,
-            image_src: data.image_src, 
-            price: data.price,
-            countInStock: data.countInStock,
-            qty
-        }
-    })
+  dispatch({
+      type: CART_ADD_ITEM,
+      payload: item,
+  });
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
-}
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+};
 
-//REMOVE FROM CART
-export const removefromcart = (id) => (dispatch, getState) => {
+export const addToCustomCart = (customProduct) => (dispatch, getState) => {
+  dispatch({ 
+    type: CART_ADD_CUSTOM_ITEM, 
+    payload: customProduct 
+  });
+
+  localStorage.setItem('customCartItems', JSON.stringify(getState().cart.customCartItems));
+};
+  
+  export const removeFromCart = (id) => (dispatch, getState) => {
     dispatch({
         type: CART_REMOVE_ITEM,
-        payload: id
-    })
+        payload: id,
+    });
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
-}
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+};
+
+export const removeFromCustomCart = (id) => (dispatch, getState) => {
+    dispatch({
+        type: CART_REMOVE_CUSTOM_ITEM,
+        payload: id,
+    });
+
+    localStorage.setItem('customCartItems', JSON.stringify(getState().cart.customCartItems));
+};
+  
 
 //SAVE SHIPPING ADDRESS
 export const saveShippingAddress = (data) => (dispatch) => {
