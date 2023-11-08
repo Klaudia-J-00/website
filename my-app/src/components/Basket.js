@@ -22,9 +22,10 @@ function Basket() {
   const { cartItems, customCartItems } = cart;
   const userLogin = useSelector((state) => state.userLogin);
 
-  const total = cartItems
+  const cartItemsTotal = cartItems
     .reduce((acc, item) => acc + item.qty * item.price, 0)
     .toFixed(2);
+   const total = (Number(cartItemsTotal) + Number(customCartItems.reduce((acc, item) => acc + item.price, 0))).toFixed(2);
   const total_with_shipping = (Number(total) + 12.99).toFixed(2);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ function Basket() {
       ) : (
         <div className="row header-row">
           <div className="col-12 pb-5">
-            <h5>Produktów w koszyku: ({cartItems.length})</h5>
+            <h5>Produktów w koszyku: ({cartItems.length + customCartItems.length})</h5>
           </div>
           <div className="col-12 col-md-8 mb-5">
             <div className="row">

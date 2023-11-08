@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 function NavbarBS() {
   const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const { cartItems, customCartItems } = cart;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -39,7 +39,7 @@ function NavbarBS() {
                 </Nav.Link>
                 <Nav.Link href="/basket" className="nav-link px-3">
                   <FontAwesomeIcon icon={faCartShopping} size="lg" />
-                  <span className="badge">{cartItems.length}</span>
+                  <span className="badge">{cartItems.length + customCartItems.length}</span>
                 </Nav.Link>
 
                 {userInfo ? (
