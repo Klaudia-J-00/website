@@ -120,22 +120,23 @@ function Basket() {
                 key={item.id}
               >
                 <div className="col-3 text-center">
+                    <p>Poniżej możesz zobaczyć zdjęcie zpersonalizowanej przez Ciebie klawiatury: </p>
                   <img
                     src={item.image_src}
                     className="product-image-basket img-fluid"
-                    alt={item.title}
+                    alt='custom keyboard'
                   />
                 </div>
                 <div className="col-3 text-center">
                   <p className="custom-name">{item.type}</p>
-                  <p>Baza klawiatury: {item.baseColor.name} </p>
+                  <p>Baza klawiatury: <b>{item.baseColor.name}</b> </p>
                   <div className="d-flex justify-content-center mb-3">
                     <div
                       className="dot"
                       style={{ backgroundColor: `${item.baseColor.color}` }}
                     />
                   </div>
-                  <p>Wnętrze bazy klawiatury: {item.insideBaseColor.name}</p>
+                  <p>Wnętrze bazy klawiatury: <b>{item.insideBaseColor.name}</b></p>
                   <div className="d-flex justify-content-center mb-3">
                     <div
                       className="dot"
@@ -144,14 +145,14 @@ function Basket() {
                       }}
                     />
                   </div>
-                  <p>Klawisze główne: {item.keyColor.name}</p>
+                  <p>Klawisze główne: <b>{item.keyColor.name}</b></p>
                   <div className="d-flex justify-content-center mb-3">
                     <div
                       className="dot"
                       style={{ backgroundColor: `${item.keyColor.color}` }}
                     />
                   </div>
-                  <p>Dodatkowe klawisze: {item.keyOtherColor.name}</p>
+                  <p>Dodatkowe klawisze: <b>{item.keyOtherColor.name}</b></p>
                   <div className="d-flex justify-content-center mb-2">
                     <div
                       className="dot"

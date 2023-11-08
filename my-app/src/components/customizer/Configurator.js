@@ -39,7 +39,7 @@ const Configurator = ( {canvasRef} ) => {
     const dataURL = canvas.toDataURL("image/png");
     const a = document.createElement("a");
     a.href = dataURL;
-    a.download = "canvas_capture.png";
+    a.download = `${type}_${randomId()}.png`;
     a.click();
   };
 
@@ -54,6 +54,7 @@ const Configurator = ( {canvasRef} ) => {
       type: type,
       price: price,
       qty: 1,
+      image_src: canvasRef.current.toDataURL("image/png"),
       baseColor,
       insideBaseColor,
       keyColor,
