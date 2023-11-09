@@ -12,10 +12,15 @@ const orderSchema = mongoose.Schema({
         image_src: { type: String, required: true},
         price: { type: Number, required: true }, 
         product: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.Mixed,
             required: true, 
             ref: "Product",
-        }
+        },
+        baseColor: { type: Array, required: false },
+        insideBaseColor: { type: Array, required: false },
+        keyColor: { type: Array, required: false },
+        keyOtherColor: { type: Array, required: false },
+        keyThirdColor: { type: Array, required: false },
     }
     ], 
     shippingAddress: { 

@@ -21,58 +21,76 @@ const PlaceOrder = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const [paymentMethod, setPaymentMethod] = useState("");
 
-  console.log('CART',cart)
+  console.log("CART", cart);
 
   useEffect(() => {
     const storedPaymentMethod = localStorage.getItem("paymentMethod");
-    setPaymentMethod(storedPaymentMethod)
+    setPaymentMethod(storedPaymentMethod);
   }, []);
 
   //calculate prices
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
-  }
+  };
 
-  cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0));
+  cart.itemsPrice = addDecimals(
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  );
   cart.shippingPrice = addDecimals(12.99);
   cart.taxPrice = addDecimals(Number((0.23 * cart.itemsPrice).toFixed(2)));
-  cart.totalPrice = addDecimals(Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice));
+  cart.totalPrice = addDecimals(
+    Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
+  );
 
   const { userInfo } = userLogin;
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
-  useEffect(() => { 
+  useEffect(() => {
     if (success) {
-      navigate(`/order/${order._id}`)
-      dispatch({type: "ORDER_CREATE_RESET"})
+      navigate(`/order/${order._id}`);
+      dispatch({ type: "ORDER_CREATE_RESET" });
     }
-  }, [navigate, dispatch, success, order, paymentMethod])
-
+  }, [navigate, dispatch, success, order, paymentMethod]);
 
   const placeOrderHandler = (e) => {
-    dispatch(createOrder({
-      orderItems: cart.cartItems.map((item) => ({
-        product: item.product,
-        title: item.title,
-        price: item.price,
-        qty: item.qty,
-        image_src: item.image_src, // Use 'image_src' instead of 'image'
-      })),
-      shippingAddress: {
-        address: cart.shippingAddress.address,
-        city: cart.shippingAddress.city,
-        postalCode: cart.shippingAddress.postalCode,
-        phoneNumber: cart.shippingAddress.phoneNumber,
-      },
-      paymentMethod: paymentMethod,
-      itemsPrice: cart.itemsPrice,
-      shippingPrice: cart.shippingPrice,
-      taxPrice: cart.taxPrice,
-      totalPrice: cart.totalPrice,
-    }))
-    
+    dispatch(
+      createOrder({
+        orderItems: [
+          ...cart.cartItems.map((item) => ({
+            product: item.product,
+            title: item.title,
+            price: item.price,
+            qty: item.qty,
+            image_src: item.image_src, 
+          })),
+          ...cart.customCartItems.map((item) => ({
+            product: item.product,
+            title: item.type,
+            price: item.price,
+            image_src: 'custom',
+            qty: item.qty,
+            baseColor: item.baseColor,
+            insideBaseColor: item.insideBaseColor,
+            keyColor: item.keyColor,
+            keyOtherColor: item.keyOtherColor,
+            keyThirdColor: item.keyThirdColor,
+          })),
+        ],
+        shippingAddress: {
+          address: cart.shippingAddress.address,
+          city: cart.shippingAddress.city,
+          postalCode: cart.shippingAddress.postalCode,
+          phoneNumber: cart.shippingAddress.phoneNumber,
+        },
+        paymentMethod: paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
   };
 
   return (
@@ -113,7 +131,8 @@ const PlaceOrder = () => {
                   <b>Dostawa:</b> DHL
                 </p>
                 <p className="credentials">
-                  <b>Płatność:</b> {paymentMethod.trim() === '"cash"' ? "Gotówka" : "Przelew"}
+                  <b>Płatność:</b>{" "}
+                  {paymentMethod.trim() === '"cash"' ? "Gotówka" : "Przelew"}
                 </p>
                 <p className="credentials">
                   <b>Numer telefonu:</b> {cart.shippingAddress.phoneNumber}
@@ -141,34 +160,142 @@ const PlaceOrder = () => {
           </div>
         </div>
         <div className="row header-row">
-          {cart.cartItems.length === 0 ? (
+          {cart &&
+          cart.cartItems &&
+          cart.cartItems.length === 0 &&
+          cart.customCartItems &&
+          cart.customCartItems.length === 0 ? (
             <Message variant="alert-info mt-5">Twój koszyk jest pusty!</Message>
           ) : (
             <>
-              {cart.cartItems.map((item, index) => (
-                <div className="col-12 col-md-8 mb-5" key={index}>
-                  <div className="row particular-product align-items-center">
-                    <div className="col-12 col-md-3 text-center m-1">
-                      <img
-                        src={item.image_src}
-                        className="product-image-basket img-fluid"
-                        alt={item.title}
-                      />
+              {cart.cartItems &&
+                cart.cartItems.map((item, index) => (
+                  <div className="col-12 col-md-8 mb-5" key={index}>
+                    <div className="row particular-product align-items-center">
+                      <div className="col-12 col-md-3 text-center m-1">
+                        <img
+                          src={item.image_src}
+                          className="product-image-basket img-fluid"
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="col-12 col-md-3 text-center m-1">
+                        <Link to={`/products/${item.product}`}>
+                          {item.title}
+                        </Link>
+                      </div>
+                      <div className="col-12 col-md-2 text-center m-1">
+                        <h6>ILOŚĆ</h6>
+                        {item.qty}
+                      </div>
+                      <div className="col-12 col-md-2 text-center m-1">
+                        <h6>SUMA CZĘŚCIOWA</h6>
+                        {(item.qty * item.price).toFixed(2)} zł
+                      </div>
+                      <hr className="line-two my-2"></hr>
                     </div>
-                    <div className="col-12 col-md-3 text-center m-1">
-                      <Link to={`/products/${item.product}`}>{item.title}</Link>
-                    </div>
-                    <div className="col-12 col-md-2 text-center m-1">
-                      <h6>ILOŚĆ</h6>
-                      {item.qty}
-                    </div>
-                    <div className="col-12 col-md-2 text-center m-1">
-                      <h6>SUMA CZĘŚCIOWA</h6>
-                      {(item.qty * item.price).toFixed(2)} zł
-                    </div>
-                    <hr className="line-two my-2"></hr>
                   </div>
-                </div>
+                ))}
+            </>
+          )}
+          {cart.customCartItems && cart.customCartItems.length > 0 && (
+            <>
+              {cart.customCartItems.map((item, index) => (
+                <>
+                  <div className="col-12 col-md-8 mb-5" key={index}>
+                    <div className="row particular-product align-items-center">
+                      <div className="col-12 col-md-3 text-center m-1">
+                        <img
+                          src={item.image_src}
+                          className="product-image-basket img-fluid"
+                          alt="custom-product"
+                        />
+                      </div>
+                      <div className="col-12 col-md-3 text-center m-1">
+                        {item.type === "numpad" ? (
+                          <>Klawiatura numeryczna</>
+                        ) : (
+                          <>Klawiatura 40%</>
+                        )}
+                      </div>
+                      <div className="col-12 col-md-2 text-center m-1">
+                        <h6>ILOŚĆ</h6>
+                        {item.qty}
+                      </div>
+                      <div className="col-12 col-md-2 text-center m-1">
+                        <h6>SUMA CZĘŚCIOWA</h6>
+                        {(item.qty * item.price).toFixed(2)} zł
+                      </div>
+                      <div className="col-12 text-center m-1">
+                        <h6>WYBRANA KOLORYSTYKA </h6>
+                        <p>
+                          Baza klawiatury: <b>{item.baseColor.name}</b>{" "}
+                        </p>
+                        <div className="d-flex justify-content-center mb-3">
+                          <div
+                            className="dot"
+                            style={{
+                              backgroundColor: `${item.baseColor.color}`,
+                            }}
+                          />
+                        </div>
+                        <p>
+                          Wnętrze bazy klawiatury:{" "}
+                          <b>{item.insideBaseColor.name}</b>
+                        </p>
+                        <div className="d-flex justify-content-center mb-3">
+                          <div
+                            className="dot"
+                            style={{
+                              backgroundColor: `${item.insideBaseColor.color}`,
+                            }}
+                          />
+                        </div>
+                        <p>
+                          Klawisze główne: <b>{item.keyColor.name}</b>
+                        </p>
+                        <div className="d-flex justify-content-center mb-3">
+                          <div
+                            className="dot"
+                            style={{
+                              backgroundColor: `${item.keyColor.color}`,
+                            }}
+                          />
+                        </div>
+                        <p>
+                          Dodatkowe klawisze: <b>{item.keyOtherColor.name}</b>
+                        </p>
+                        <div className="d-flex justify-content-center mb-2">
+                          <div
+                            className="dot"
+                            style={{
+                              backgroundColor: `${item.keyOtherColor.color}`,
+                            }}
+                          />
+                        </div>
+                        {item.type === "numpad" ? (
+                          <></>
+                        ) : (
+                          <>
+                            <p>
+                              Klawisze akcesoryjne:{" "}
+                              <b>{item.keyThirdColor.name}</b>
+                            </p>
+                            <div className="d-flex justify-content-center mb-2">
+                              <div
+                                className="dot"
+                                style={{
+                                  backgroundColor: `${item.keyThirdColor.color}`,
+                                }}
+                              />
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      <hr className="line-two my-2"></hr>
+                    </div>
+                  </div>
+                </>
               ))}
             </>
           )}
@@ -197,18 +324,26 @@ const PlaceOrder = () => {
                 </tbody>
               </table>
             </div>
-            {cart.cartItems.length === 0 ? null : (
+            {cart &&
+          cart.cartItems &&
+          cart.cartItems.length === 0 &&
+          cart.customCartItems &&
+          cart.customCartItems.length === 0 ? null : (
               <>
                 <div className="row justify-content-center align-items-center d-flex m-3 mt-5">
                   <div className="col-6">
-                    <button className="btn" type="submit" onClick={placeOrderHandler}>ZAMÓW</button>
+                    <button
+                      className="btn"
+                      type="submit"
+                      onClick={placeOrderHandler}
+                    >
+                      ZAMÓW
+                    </button>
                   </div>
                 </div>
               </>
             )}
-            {
-              error && <Message variant="alert-danger">{error}</Message>
-            }
+            {error && <Message variant="alert-danger">{error}</Message>}
           </div>
         </div>
       </div>

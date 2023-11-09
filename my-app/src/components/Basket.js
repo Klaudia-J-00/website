@@ -25,7 +25,10 @@ function Basket() {
   const cartItemsTotal = cartItems
     .reduce((acc, item) => acc + item.qty * item.price, 0)
     .toFixed(2);
-   const total = (Number(cartItemsTotal) + Number(customCartItems.reduce((acc, item) => acc + item.price, 0))).toFixed(2);
+  const total = (
+    Number(cartItemsTotal) +
+    Number(customCartItems.reduce((acc, item) => acc + item.price, 0))
+  ).toFixed(2);
   const total_with_shipping = (Number(total) + 12.99).toFixed(2);
 
   useEffect(() => {
@@ -65,7 +68,9 @@ function Basket() {
       ) : (
         <div className="row header-row">
           <div className="col-12 pb-5">
-            <h5>Produktów w koszyku: ({cartItems.length + customCartItems.length})</h5>
+            <h5>
+              Produktów w koszyku: ({cartItems.length + customCartItems.length})
+            </h5>
           </div>
           <div className="col-12 col-md-8 mb-5">
             <div className="row">
@@ -120,25 +125,36 @@ function Basket() {
                 key={item.id}
               >
                 <div className="col-3 text-center">
-                    <p>Poniżej możesz zobaczyć zdjęcie zpersonalizowanej przez Ciebie klawiatury: </p>
+                  <p>
+                    Poniżej możesz zobaczyć zdjęcie zpersonalizowanej przez
+                    Ciebie klawiatury:{" "}
+                  </p>
                   <img
                     src={item.image_src}
                     className="product-image-basket img-fluid"
-                    alt='custom keyboard'
+                    alt="custom keyboard"
                   />
                 </div>
                 <div className="col-3 text-center">
                   <p className="custom-name">
-                    {item.type === "numpad" ? (<>Klawiatura numeryczna</>) : (<>Klawiatura 40%</>)}
-                    </p>
-                  <p>Baza klawiatury: <b>{item.baseColor.name}</b> </p>
+                    {item.type === "numpad" ? (
+                      <>Klawiatura numeryczna</>
+                    ) : (
+                      <>Klawiatura 40%</>
+                    )}
+                  </p>
+                  <p>
+                    Baza klawiatury: <b>{item.baseColor.name}</b>{" "}
+                  </p>
                   <div className="d-flex justify-content-center mb-3">
                     <div
                       className="dot"
                       style={{ backgroundColor: `${item.baseColor.color}` }}
                     />
                   </div>
-                  <p>Wnętrze bazy klawiatury: <b>{item.insideBaseColor.name}</b></p>
+                  <p>
+                    Wnętrze bazy klawiatury: <b>{item.insideBaseColor.name}</b>
+                  </p>
                   <div className="d-flex justify-content-center mb-3">
                     <div
                       className="dot"
@@ -147,24 +163,43 @@ function Basket() {
                       }}
                     />
                   </div>
-                  <p>Klawisze główne: <b>{item.keyColor.name}</b></p>
+                  <p>
+                    Klawisze główne: <b>{item.keyColor.name}</b>
+                  </p>
                   <div className="d-flex justify-content-center mb-3">
                     <div
                       className="dot"
                       style={{ backgroundColor: `${item.keyColor.color}` }}
                     />
                   </div>
-                  <p>Dodatkowe klawisze: <b>{item.keyOtherColor.name}</b></p>
+                  <p>
+                    Dodatkowe klawisze: <b>{item.keyOtherColor.name}</b>
+                  </p>
                   <div className="d-flex justify-content-center mb-2">
                     <div
                       className="dot"
                       style={{ backgroundColor: `${item.keyOtherColor.color}` }}
                     />
                   </div>
+                  {item.type === "numpad" ? (
+                    <></>
+                  ) : (
+                    <>
+                      <p>
+                        Klawisze akcesoryjne: <b>{item.keyThirdColor.name}</b>
+                      </p>
+                      <div className="d-flex justify-content-center mb-2">
+                        <div
+                          className="dot"
+                          style={{
+                            backgroundColor: `${item.keyThirdColor.color}`,
+                          }}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
-                <div className="col-2 text-center">
-                  1
-                </div>
+                <div className="col-2 text-center">1</div>
                 <div className="col-2 text-center">{item.price} zł</div>
                 <div
                   className="col-2 text-center remove"

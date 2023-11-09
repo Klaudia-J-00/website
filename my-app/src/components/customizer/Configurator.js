@@ -48,9 +48,11 @@ const Configurator = ( {canvasRef} ) => {
   }
 
   const addToCartHandle = () => {
+    const id = randomId()
+
     const customProduct = {
-      product: "custom",
-      id: randomId(), 
+      product: `custom_${id}`,
+      id: id, 
       type: type,
       price: price,
       qty: 1,
