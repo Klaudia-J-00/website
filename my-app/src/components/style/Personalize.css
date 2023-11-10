@@ -23,7 +23,7 @@
 .configurator2 {
     position: fixed;
     right: 10vw;
-    bottom: 20vh;
+    bottom: 3vh;
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -107,7 +107,7 @@
     
     .configurator2 {
         right: 5vw;
-        bottom: 10vh;
+        bottom: 1vh;
     }
 
     .item__dot {
