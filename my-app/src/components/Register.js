@@ -6,6 +6,7 @@ import { register } from "../Redux/Actions/UserActions";
 import { useNavigate } from "react-router-dom";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
+import PasswordChecklist from "react-password-checklist"
 
 function Register({ location }) {
   window.scrollTo(0, 0);
@@ -14,6 +15,7 @@ function Register({ location }) {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("")
 
   const dispatch = useDispatch();
   const redirect =
@@ -116,6 +118,33 @@ function Register({ location }) {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="password-again" className="col-sm-3 col-form-label">
+                    potwierdź hasło
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password-again"
+                    placeholder="Wprowadź hasło"
+                    required
+                    value={passwordAgain}
+                    onChange={(e) => setPasswordAgain(e.target.value)}
+                  />
+                </div>
+                <PasswordChecklist
+                  rules={["minLength","specialChar","number","capital","match"]}
+                  minLength={8}
+                  value={password}
+                  valueAgain={passwordAgain}
+                  messages={{
+                    minLength: "Hasło musi mieć minimum 8 znaków.",
+                    specialChar: "Hasło musi mieć jeden znak specjalny.",
+                    number: "Hasło musi mieć jedną cyfrę.",
+                    capital: "Hasło musi mieć jedną dużą literę.",
+                    match: "Hasła się nie zgadzają.",
+                  }}
+                />
 
                 <div className="form-group row button-submit">
                   <div className="col-sm-12">

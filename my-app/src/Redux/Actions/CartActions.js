@@ -28,7 +28,8 @@ import {
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 };
 
-export const addToCustomCart = (customProduct) => (dispatch, getState) => {
+export const addToCustomCart = (customProduct) => async (dispatch, getState) => {
+  
   dispatch({ 
     type: CART_ADD_CUSTOM_ITEM, 
     payload: customProduct 

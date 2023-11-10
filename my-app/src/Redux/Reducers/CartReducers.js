@@ -10,7 +10,7 @@ import {
 } from "../Constants/CartConstants";
 
 export const cartReducer = (
-  state = { cartItems: [], shippingAddress: {} },
+  state = { cartItems: [], customCartItems: [], shippingAddress: {} },
   action
 ) => {
   switch (action.type) {
@@ -47,9 +47,11 @@ export const cartReducer = (
         paymentMethod: action.payload,
       };
     case CART_CLEAR_ITEMS:
+      localStorage.removeItem('customCartItems');  
       return {
         ...state,
         cartItems: [],
+        customCartItems: [],
       };
     case CART_RESET_SHIPPING_ADDRESS:
       return {
@@ -58,10 +60,21 @@ export const cartReducer = (
       };
     case CART_ADD_CUSTOM_ITEM:
       const customItem = action.payload;
-      return {
-        ...state,
-        customCartItems: [...state.customCartItems, customItem],
-      };
+      const existCustomItem = state.customCartItems.find(x => x.id === customItem.id);
+
+      if (existCustomItem) {
+        return {
+          ...state,
+          customCartItems: state.customCartItems.map(x =>
+            x.id === existCustomItem.id ? customItem : x
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          customCartItems: [...state.customCartItems, customItem],
+        };
+      }
     case CART_REMOVE_CUSTOM_ITEM:
       return {
         ...state,

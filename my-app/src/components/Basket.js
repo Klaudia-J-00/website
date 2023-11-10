@@ -199,7 +199,18 @@ function Basket() {
                     </>
                   )}
                 </div>
-                <div className="col-2 text-center">1</div>
+                <div className="col-2 text-center">
+                    <input
+                    className="qty-input"
+                    type="number"
+                    min="1"
+                    max="10"
+                    value={item.qty}
+                    onChange={(e) => {
+                      dispatch(addToCustomCart({...item, qty: Number(e.target.value)}));
+                    }}
+                  />
+                </div>
                 <div className="col-2 text-center">{item.price} zł</div>
                 <div
                   className="col-2 text-center remove"

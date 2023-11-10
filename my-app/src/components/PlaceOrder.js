@@ -34,7 +34,8 @@ const PlaceOrder = () => {
   };
 
   cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0) +
+    cart.customCartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
   cart.shippingPrice = addDecimals(12.99);
   cart.taxPrice = addDecimals(Number((0.23 * cart.itemsPrice).toFixed(2)));

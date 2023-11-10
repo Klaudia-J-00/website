@@ -15,12 +15,16 @@ import moment from "moment";
 import "moment/locale/pl";
 import { ORDER_PAY_RESET } from "../Redux/Constants/OrderConstants";
 import axios from "axios";
-import { PayPalButton } from "react-paypal-button-v2";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
 
 const Order = () => {
   window.scrollTo(0, 0);
 
-  const [sdkReady, setSdkReady] = useState(false);
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const orderId = useParams().id;
 
   const dispatch = useDispatch();
@@ -29,32 +33,33 @@ const Order = () => {
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
-  const { loading: loadingPay, success: successPay } = orderDetails;
+  const { loading: loadingPay, success: successPay } = orderPay;
+
+  const [clientId, setClientId] = useState("");
 
   useEffect(() => {
-    const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get("/api/config/paypal");
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&currency=PLN`;
-      script.async = true;
-      script.onload = () => {
-        setSdkReady(true);
-      };
-      document.body.appendChild(script);
+    const fetchData = async () => {
+      try {
+        const { data: clientData } = await axios.get("/api/config/paypal");
+        setClientId(clientData.clientId);
+        paypalDispatch({
+          type: "resetOptions",
+          value: { "client-id": clientData.clientId, currency: "PLN" },
+        });
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      } catch (error) {
+        // Handle error fetching client ID
+        console.error("Error fetching PayPal client ID:", error);
+      }
     };
+
+    fetchData();
 
     if (!order || successPay) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch(getOrderDetails(orderId));
-    } else if (!order.isPaid) {
-      if (!window.paypal) {
-        addPayPalScript();
-      } else {
-        setSdkReady(true);
-      }
     }
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, order, clientId]);
 
   const succesPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
@@ -92,9 +97,9 @@ const Order = () => {
     <div className="container place-order">
       <div className="row order-info m-3">
         <div className="col-12 col-md-3 m-5 info-mobile">
-            <div className="row">
-              <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
-                <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
+          <div className="row">
+            <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
+              <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
                 <FontAwesomeIcon
                   icon={faCircleUser}
                   className="place-order-icon"
@@ -110,9 +115,9 @@ const Order = () => {
           </div>
         </div>
         <div className="col-12 col-md-3 m-5 info-mobile">
-            <div className="row">
-              <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
-                <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
+          <div className="row">
+            <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
+              <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
                 <FontAwesomeIcon icon={faTruck} className="place-order-icon" />
               </div>
             </div>
@@ -142,9 +147,9 @@ const Order = () => {
           </div>
         </div>
         <div className="col-12 col-md-3 m-5 info-mobile">
-            <div className="row">
-              <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
-                <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
+          <div className="row">
+            <div className="col-12 col-md-4 d-flex justify-content-center text-center align-items-center">
+              <div className="d-flex justify-content-center text-center align-items-center btn-circle-two col-12">
                 <FontAwesomeIcon
                   icon={faLocationDot}
                   className="place-order-icon"
@@ -175,17 +180,104 @@ const Order = () => {
           <>
             {order.orderItems.map((item, index) => (
               <>
-                <div className="col-12 col-md-8 mb-5" key={index}>
+                <div className="col-12 mb-5" key={index}>
                   <div className="row particular-product align-items-center">
                     <div className="col-12 col-md-3 text-center m-1">
-                      <img
-                        src={item.image_src}
-                        className="product-image-basket img-fluid"
-                        alt={item.title}
-                      />
+                      {item.image_src == "custom" ? (
+                        <>
+                          <p>
+                            Baza klawiatury: <b>{item.baseColor[0].name}</b>{" "}
+                          </p>
+                          <div className="d-flex justify-content-center mb-3">
+                            <div
+                              className="dot"
+                              style={{
+                                backgroundColor: `${item.baseColor[0].color}`,
+                              }}
+                            />
+                          </div>
+                          <p>
+                            Wnętrze bazy klawiatury:{" "}
+                            <b>{item.insideBaseColor[0].name}</b>
+                          </p>
+                          <div className="d-flex justify-content-center mb-3">
+                            <div
+                              className="dot"
+                              style={{
+                                backgroundColor: `${item.insideBaseColor[0].color}`,
+                              }}
+                            />
+                          </div>
+                          <p>
+                            Klawisze główne: <b>{item.keyColor[0].name}</b>
+                          </p>
+                          <div className="d-flex justify-content-center mb-3">
+                            <div
+                              className="dot"
+                              style={{
+                                backgroundColor: `${item.keyColor[0].color}`,
+                              }}
+                            />
+                          </div>
+                          <p>
+                            Dodatkowe klawisze:{" "}
+                            <b>{item.keyOtherColor[0].name}</b>
+                          </p>
+                          <div className="d-flex justify-content-center mb-2">
+                            <div
+                              className="dot"
+                              style={{
+                                backgroundColor: `${item.keyOtherColor[0].color}`,
+                              }}
+                            />
+                          </div>
+                          {item.title === "numpad" ? (
+                            <></>
+                          ) : (
+                            <>
+                              <p>
+                                Klawisze akcesoryjne:{" "}
+                                <b>{item.keyThirdColor[0].name}</b>
+                              </p>
+                              <div className="d-flex justify-content-center mb-2">
+                                <div
+                                  className="dot"
+                                  style={{
+                                    backgroundColor: `${item.keyThirdColor[0].color}`,
+                                  }}
+                                />
+                              </div>
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <img
+                          src={item.image_src}
+                          className="product-image-basket img-fluid"
+                          alt={item.title}
+                        />
+                      )}
                     </div>
                     <div className="col-12 col-md-3 text-center m-1">
-                      <Link to={`/products/${item.product}`}>{item.title}</Link>
+                      {item.image_src == "custom" ? (
+                        <>
+                          {item.title == "numpad" ? (
+                            <>
+                              <p>Klawiatura numeryczna</p>
+                            </>
+                          ) : (
+                            <>
+                              <p>
+                                <b>Klawiatura 40%</b>
+                              </p>
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <Link to={`/products/${item.product}`}>
+                          {item.title}
+                        </Link>
+                      )}
                     </div>
                     <div className="col-12 col-md-2 text-center m-1">
                       <h6>ILOŚĆ</h6>
@@ -227,32 +319,50 @@ const Order = () => {
           </table>
         </div>
       </div>
-      {!order.isPaid && (
+      {!order.isPaid ? (
         <div className="row justify-content-center align-items-center d-flex m-3 mt-5">
           <div className="col-12 col-md-4 text-center mb-5">
             {loadingPay && <Loading />}
-            {!sdkReady ? (
+            {isPending ? (
               <Loading />
             ) : (
               <>
                 <h6>Nie opłaciłeś jeszcze zamówienia? Zrób to tutaj: </h6>
-                <PayPalButton
-                  amount={order.totalPrice}
-                  currency={"PLN"}
-                  onSuccess={succesPaymentHandler}
-                />
+                <PayPalScriptProvider options={{ "client-id": clientId }}>
+                  <PayPalButtons
+                    style={{ layout: "horizontal" }}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: order.totalPrice,
+                              currency_code: "PLN",
+                            },
+                          },
+                        ],
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order.capture().then((details) => {
+                        succesPaymentHandler(details);
+                      });
+                    }}
+                  />
+                </PayPalScriptProvider>
               </>
             )}
           </div>
         </div>
-      )} {order.isPaid && (
+      ) : (
         <div className="row justify-content-center align-items-center d-flex m-3 mt-5">
           <div className="col-12 col-md-4 text-center mb-5">
-            <h5 className="u-paid">Opłaciłeś zamówienie! Niedługo zostanie wysłane.</h5>
+            <h5 className="u-paid">
+              Opłaciłeś zamówienie! Niedługo zostanie wysłane.
+            </h5>
           </div>
         </div>
-      )
-      }
+      )}
     </div>
   );
 };
