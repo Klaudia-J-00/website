@@ -2,14 +2,16 @@ import "./style/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../Redux/Actions/UserActions";
+import { login, loginWithGoogle } from "../Redux/Actions/UserActions";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 
 function Login({ location }) {
   window.scrollTo(0, 0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [ user, setUser ] = useState([]);
 
   const dispatch = useDispatch();
   const redirect =
@@ -28,11 +30,18 @@ function Login({ location }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await dispatch(login(email, password));
+    dispatch(login(email, password));
     if (userInfo) {
       navigate(redirect);
     }
   };
+
+  const login = useGoogleLogin({
+    onSuccess: (response) => {
+      dispatch(loginWithGoogle(response));
+    },
+    onError: (error) => console.log('Login Failed:', error)
+});
 
   return (
     <div className="container">
@@ -103,7 +112,7 @@ function Login({ location }) {
 
           <div className="row justify-content-center">
             <div className="btn-google col-6">
-              <button className="btn btn-white btn-circle col-12">
+              <button className="btn btn-white btn-circle col-12" onClick={() => login()}>
                 <img src="../img/google.png" alt="btn" className="img-fluid" />
               </button>
               ⠀

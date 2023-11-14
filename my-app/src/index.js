@@ -27,6 +27,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Loading from "./components/LoadingError/Loading";
 import PersonalizeEighty from "./components/PersonalizeEighty";
 import PersonalizeHundred from "./components/PersonalizeHundred";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = createRoot(document.getElementById("root"));
 
@@ -43,54 +44,61 @@ function Main() {
   }, []);
 
   if (!clientId) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
     <React.StrictMode>
-      <Provider store={store}>
-        <PayPalScriptProvider options={{ "client-id": clientId, currency: "PLN" }}>
-          <Router>
-            <Navbar />
-            <Routes>
-              <Route
-                path="/"
-                element={<Hero gltfPath="models/keyboard2.glb" />}
-                exact
-              />
-              <Route path="/about" element={<About />} />
-              <Route path="/personalization" element={<Personalization />} />
-              <Route path="/basket/:id?" element={<Basket />} />
-              <Route path="/keyboard" element={<Keyboard />} />
-              <Route path="/products/:id" element={<SingleProduct />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="*" element={<h1>404</h1>} />
-              <Route path="/search/:keyword" element={<Keyboard />} />
-              {/* private routes (they will be shown to u only if u are logged in) */}
-              <Route path="/" element={<PrivateRouter />}>
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/delivery" element={<Delivery />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/placeorder" element={<PlaceOrder />} />
+      <GoogleOAuthProvider clientId="120855135136-kbbk72qbrp38n7ai1739hj1te2lb4qc4.apps.googleusercontent.com">
+        <Provider store={store}>
+          <PayPalScriptProvider
+            options={{ "client-id": clientId, currency: "PLN" }}
+          >
+            <Router>
+              <Navbar />
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Hero gltfPath="models/keyboard2.glb" />}
+                  exact
+                />
+                <Route path="/about" element={<About />} />
+                <Route path="/personalization" element={<Personalization />} />
+                <Route path="/basket/:id?" element={<Basket />} />
+                <Route path="/keyboard" element={<Keyboard />} />
+                <Route path="/products/:id" element={<SingleProduct />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="*" element={<h1>404</h1>} />
+                <Route path="/search/:keyword" element={<Keyboard />} />
+                {/* private routes (they will be shown to u only if u are logged in) */}
+                <Route path="/" element={<PrivateRouter />}>
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/delivery" element={<Delivery />} />
+                  <Route path="/payment" element={<Payment />} />
+                  <Route path="/placeorder" element={<PlaceOrder />} />
 
-                <Route path="/order/:id" element={<Order />} />
-              </Route>
-              <Route
-                path="/personalize-numpad"
-                element={
-                  <CustomizationProvider>
-                    <PersonalizeNumpad />
-                  </CustomizationProvider>
-                }
-              />
-              <Route path="/personalize-40" element={<PersonalizeForty />} />
-              <Route path="/personalize-80" element={<PersonalizeEighty />} />
-              <Route path="/personalize-100" element={<PersonalizeHundred />} />
-            </Routes>
-          </Router>
-        </PayPalScriptProvider>
-      </Provider>
+                  <Route path="/order/:id" element={<Order />} />
+                </Route>
+                <Route
+                  path="/personalize-numpad"
+                  element={
+                    <CustomizationProvider>
+                      <PersonalizeNumpad />
+                    </CustomizationProvider>
+                  }
+                />
+                <Route path="/personalize-40" element={<PersonalizeForty />} />
+                <Route path="/personalize-80" element={<PersonalizeEighty />} />
+                <Route
+                  path="/personalize-100"
+                  element={<PersonalizeHundred />}
+                />
+              </Routes>
+            </Router>
+          </PayPalScriptProvider>
+        </Provider>
+      </GoogleOAuthProvider>
     </React.StrictMode>
   );
 }
