@@ -3,7 +3,6 @@ import {
     PresentationControls,
     Stage,
   } from "@react-three/drei";
- import Numpad from "../Numpad";
  import Forty from "../Forty";
   
   const Experience = () => {

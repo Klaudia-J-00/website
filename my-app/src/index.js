@@ -25,6 +25,8 @@ import { createRoot } from "react-dom/client";
 import axios from "axios";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Loading from "./components/LoadingError/Loading";
+import PersonalizeEighty from "./components/PersonalizeEighty";
+import PersonalizeHundred from "./components/PersonalizeHundred";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -83,6 +85,8 @@ function Main() {
                 }
               />
               <Route path="/personalize-40" element={<PersonalizeForty />} />
+              <Route path="/personalize-80" element={<PersonalizeEighty />} />
+              <Route path="/personalize-100" element={<PersonalizeHundred />} />
             </Routes>
           </Router>
         </PayPalScriptProvider>

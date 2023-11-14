@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircle,
-  faCaretUp,
-  faCaretDown,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
@@ -124,30 +122,8 @@ function Keyboard() {
                     </h4>
                     <p className="product-description">{product.description}</p>
                   </div>
-                  {/* REVIEWS */}
-
-                  <div className="col-2 d-flex justify-content-end">
-                    {product.upvote_count - product.downvote_count > 0 ? (
-                      <p className="upvote-count mr-2">
-                        {product.upvote_count - product.downvote_count}
-                      </p>
-                    ) : (
-                      <p className="upvote-count mr-2">0</p>
-                    )}
-
-                    <div className="vote-arrows d-flex flex-column align-items-end">
-                      <div className="upvote">
-                        <FontAwesomeIcon icon={faCaretUp} className="caret-1" />
-                      </div>
-                      <div className="downvote">
-                        <FontAwesomeIcon
-                          icon={faCaretDown}
-                          className="caret-2"
-                        />
-                      </div>
-                    </div>
-                  </div>
                 </div>
+
                 <div className="row">
                   <div className="col-12 product-button d-flex justify-content-center">
                     <Link to={`/products/${product._id}`} className="btn">

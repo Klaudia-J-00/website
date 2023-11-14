@@ -21,7 +21,7 @@ const Configurator = ( {canvasRef} ) => {
   } = useCustomization();
 
   const type = "forty"
-  const price = 599.99 
+  const price = 399.99 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

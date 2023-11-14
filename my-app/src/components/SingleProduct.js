@@ -161,20 +161,6 @@ const SingleProduct = () => {
                 {product.description}
               </p>
             </div>
-
-            <div className="col-2 d-flex justify-content-end">
-              <p className="upvote-count mr-2">
-                {product.upvote_count - product.downvote_count}
-              </p>
-              <div className="vote-arrows d-flex flex-column align-items-end">
-                <div className="upvote">
-                  <FontAwesomeIcon icon={faCaretUp} className="caret-1" />
-                </div>
-                <div className="downvote">
-                  <FontAwesomeIcon icon={faCaretDown} className="caret-2" />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 

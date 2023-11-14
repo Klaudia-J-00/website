@@ -137,10 +137,17 @@ function Basket() {
                 </div>
                 <div className="col-3 text-center">
                   <p className="custom-name">
-                    {item.type === "numpad" ? (
+                    {item.type === "numpad" && (
                       <>Klawiatura numeryczna</>
-                    ) : (
+                    )}
+                    {item.type === "forty" && (
                       <>Klawiatura 40%</>
+                    )}
+                    {item.type === "eighty" && (
+                      <>Klawiatura 80%</>
+                    )}
+                    {item.type === "hundred" && (
+                      <>Klawiatura 100%</>
                     )}
                   </p>
                   <p>

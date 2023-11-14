@@ -213,11 +213,18 @@ const PlaceOrder = () => {
                         />
                       </div>
                       <div className="col-12 col-md-3 text-center m-1">
-                        {item.type === "numpad" ? (
-                          <>Klawiatura numeryczna</>
-                        ) : (
-                          <>Klawiatura 40%</>
-                        )}
+                      {item.type === "numpad" && (
+                      <>Klawiatura numeryczna</>
+                    )}
+                    {item.type === "forty" && (
+                      <>Klawiatura 40%</>
+                    )}
+                    {item.type === "eighty" && (
+                      <>Klawiatura 80%</>
+                    )}
+                    {item.type === "hundred" && (
+                      <>Klawiatura 100%</>
+                    )}
                       </div>
                       <div className="col-12 col-md-2 text-center m-1">
                         <h6>ILOŚĆ</h6>

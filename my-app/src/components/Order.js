@@ -260,19 +260,12 @@ const Order = () => {
                     </div>
                     <div className="col-12 col-md-3 text-center m-1">
                       {item.image_src == "custom" ? (
-                        <>
-                          {item.title == "numpad" ? (
-                            <>
-                              <p>Klawiatura numeryczna</p>
-                            </>
-                          ) : (
-                            <>
-                              <p>
-                                <b>Klawiatura 40%</b>
-                              </p>
-                            </>
-                          )}
-                        </>
+                        <b>
+                          {item.title === "numpad" && <>Klawiatura numeryczna</>}
+                          {item.title === "forty" && <>Klawiatura 40%</>}
+                          {item.title === "eighty" && <>Klawiatura 80%</>}
+                          {item.title === "hundred" && <>Klawiatura 100%</>}
+                        </b>
                       ) : (
                         <Link to={`/products/${item.product}`}>
                           {item.title}

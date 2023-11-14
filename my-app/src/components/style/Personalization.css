@@ -1,11 +1,8 @@
-.Personalization {
-    height: 70vh;
-}
 
 .personalization-choose {
     border: 2px solid black;
     border-radius: 33px;
-    margin: 50px;
+    margin: 2px;
 }
 
 .icon-img {
@@ -14,9 +11,8 @@
 
 .perso-h1 {
     font-family: 'Italiana', serif;
-    padding: 0px 60px;
-    padding-top: 30px;
-    font-size: 4vw;
+    padding-top: 18vh;
+    font-size: 45px;
     text-align: center;
 }
 
