@@ -32,7 +32,6 @@ function Personalization() {
                 </Link>
               </div>
          </div>
-      </div>
 
   );
 }
