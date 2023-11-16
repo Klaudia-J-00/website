@@ -1,13 +1,15 @@
 import express from "express";
+import dotenv from "dotenv";
 import asyncHandler from "express-async-handler";
 import protect from "../Middleware/AuthMiddleware.js";
 import generateToken from "../Utils/GenerateToken.js";
 import User from "../Models/UserModel.js";
+import { OAuth2Client } from "google-auth-library";
 
+dotenv.config();
 const userRoute = express.Router();
-const { OAuth2Client } = require('google-auth-library');
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
-
 
 //Login
 userRoute.post(
@@ -92,90 +94,76 @@ userRoute.get(
 
 //update profile
 userRoute.put(
-    "/profile",
-    protect,
-    asyncHandler(async (req, res) => {
-      const user = await User.findById(req.user._id);
+  "/profile",
+  protect,
+  asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.surname = req.body.surname || user.surname;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+      const updatedUser = await user.save();
+      res.json({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        surname: updatedUser.surname,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser._id),
+        createdAt: updatedUser.createdAt,
+      });
+    } else {
+      res.status(404);
+      throw new Error("Użytkownik nie znaleziony");
+    }
+  })
+);
+
+userRoute.post(
+  "/loginWithGoogle",
+  asyncHandler(async (req, res) => {
+    const { id_token } = req.body;
+
+    async function verify() {
+      const ticket = await client.verifyIdToken({
+          idToken: id_token,
+          audience: GOOGLE_CLIENT_ID,  
+      });
+      const payload = ticket.getPayload();
+      const googleId = payload['sub'];
+      const email = payload['email'];
+      const name = payload['name'];
+
+      let user = await User.findOne({ email });
+
+      if (!user) {
+        user = await User.create({
+          googleId,
+          email,
+          name,
+        });
+      }
+
       if (user) {
-        user.name = req.body.name || user.name;
-        user.surname = req.body.surname || user.surname;
-        user.email = req.body.email || user.email;
-        if (req.body.password) {
-          user.password = req.body.password;
-        }
-        const updatedUser = await user.save();
         res.json({
-          _id: updatedUser._id,
-          name: updatedUser.name,
-          surname: updatedUser.surname,
-          email: updatedUser.email,
-          isAdmin: updatedUser.isAdmin,
-          token: generateToken(updatedUser._id),
-          createdAt: updatedUser.createdAt,
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          token: generateToken(user._id),
+          createdAt: user.createdAt,
         });
       } else {
-        res.status(404);
-        throw new Error("Użytkownik nie znaleziony");
+        res.status(400);
+        throw new Error("Niepoprawne dane użytkownika");
       }
-    })
-  );
+    }
+    verify().catch(console.error);
+  })
+);
 
-  async function verifyGoogleToken(token) {
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: GOOGLE_CLIENT_ID,  
-    });
-    const payload = ticket.getPayload();
-    const userid = payload['sub'];
-    return payload; 
-  }
-  userRoute.post(
-    "/loginWithGoogle",
-    asyncHandler(async (req, res) => {
-      const { token } = req.body;
-      try {
-        const googleUser = await verifyGoogleToken(token);
-      } catch (error) {
-        res.status(401);
-        throw new Error("Invalid Google token");
-      }
-    })
-  );
-
-  userRoute.post(
-    "/loginWithGoogle",
-    asyncHandler(async (req, res) => {
-      const { token } = req.body;
-      try {
-        const googleUser = await verifyGoogleToken(token);
-        const { email, name } = googleUser;
-  
-        let user = await User.findOne({ email });
-  
-        if (!user) {
-          user = await User.create({
-            name,
-            email,
-            password: 'GoogleAccount'
-          });
-        }
-  
-        if (user) {
-          res.json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-          });
-        } else {
-          res.status(401);
-          throw new Error('Invalid user data');
-        }
-      } catch (error) {
-        res.status(401);
-        throw new Error("Invalid Google token");
-      }
-    })
-  );
 
 export default userRoute;

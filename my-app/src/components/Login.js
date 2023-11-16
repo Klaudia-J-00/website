@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, loginWithGoogle } from "../Redux/Actions/UserActions";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 
 function Login({ location }) {
   window.scrollTo(0, 0);
@@ -35,13 +35,6 @@ function Login({ location }) {
       navigate(redirect);
     }
   };
-
-  const login = useGoogleLogin({
-    onSuccess: (response) => {
-      dispatch(loginWithGoogle(response));
-    },
-    onError: (error) => console.log('Login Failed:', error)
-});
 
   return (
     <div className="container">
@@ -112,17 +105,20 @@ function Login({ location }) {
 
           <div className="row justify-content-center">
             <div className="btn-google col-6">
-              <button className="btn btn-white btn-circle col-12" onClick={() => login()}>
-                <img src="../img/google.png" alt="btn" className="img-fluid" />
-              </button>
-              ⠀
-              <button className="btn btn-white btn-circle col-12">
-                <img
-                  src="../img/facebook.png"
-                  alt="btn"
-                  className="img-fluid p-3"
+              <div className='spacer'></div>
+                <GoogleLogin
+                  onSuccess={credentialResponse => {
+                    console.log(credentialResponse);
+                    const id_token = credentialResponse.credential;
+                    dispatch(loginWithGoogle(id_token));
+                    navigate(redirect);
+                  }}
+                  type="icon"
+                  shape="circle"
+                  onError={() => {
+                    console.log('Login Failed');
+                  }}
                 />
-              </button>
             </div>
           </div>
 
@@ -142,5 +138,6 @@ function Login({ location }) {
     </div>
   );
 }
+
 
 export default Login;

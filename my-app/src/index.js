@@ -28,6 +28,7 @@ import Loading from "./components/LoadingError/Loading";
 import PersonalizeEighty from "./components/PersonalizeEighty";
 import PersonalizeHundred from "./components/PersonalizeHundred";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Policy from "./components/Policy";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -71,6 +72,7 @@ function Main() {
                 <Route path="/register" element={<Register />} />
                 <Route path="*" element={<h1>404</h1>} />
                 <Route path="/search/:keyword" element={<Keyboard />} />
+                <Route path="/policy" element={<Policy />} />
                 {/* private routes (they will be shown to u only if u are logged in) */}
                 <Route path="/" element={<PrivateRouter />}>
                   <Route path="/profile" element={<Profile />} />

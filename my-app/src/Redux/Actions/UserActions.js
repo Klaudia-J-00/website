@@ -183,10 +183,8 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 }
 
-export const loginWithGoogle = (googleResponse) => async (dispatch) => {
+export const loginWithGoogle = (id_token) => async (dispatch) => {
     try {
-      dispatch({ type: USER_LOGIN_REQUEST });
-  
       const config = {
         headers: {
           'Content-Type': 'application/json',
@@ -195,11 +193,14 @@ export const loginWithGoogle = (googleResponse) => async (dispatch) => {
   
       const { data } = await axios.post(
         '/api/users/loginWithGoogle',
-        { token: googleResponse.tokenId },
+        { id_token },
         config
       );
   
-      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
   
       localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {

@@ -2,11 +2,12 @@ import "./style/Login.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../Redux/Actions/UserActions";
+import { loginWithGoogle, register } from "../Redux/Actions/UserActions";
 import { useNavigate } from "react-router-dom";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
-import PasswordChecklist from "react-password-checklist"
+import PasswordChecklist from "react-password-checklist";
+import { GoogleLogin } from "@react-oauth/google";
 
 function Register({ location }) {
   window.scrollTo(0, 0);
@@ -15,7 +16,7 @@ function Register({ location }) {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordAgain, setPasswordAgain] = useState("")
+  const [passwordAgain, setPasswordAgain] = useState("");
 
   const dispatch = useDispatch();
   const redirect =
@@ -86,7 +87,7 @@ function Register({ location }) {
                     id="surname"
                     placeholder="Wprowadź nazwisko"
                     required
-                    value = {surname}
+                    value={surname}
                     onChange={(e) => setSurname(e.target.value)}
                   />
                 </div>
@@ -100,7 +101,7 @@ function Register({ location }) {
                     id="email"
                     placeholder="Wprowadź e-mail"
                     required
-                    value = {email}
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
@@ -119,7 +120,10 @@ function Register({ location }) {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password-again" className="col-sm-3 col-form-label">
+                  <label
+                    htmlFor="password-again"
+                    className="col-sm-3 col-form-label"
+                  >
                     potwierdź hasło
                   </label>
                   <input
@@ -133,7 +137,13 @@ function Register({ location }) {
                   />
                 </div>
                 <PasswordChecklist
-                  rules={["minLength","specialChar","number","capital","match"]}
+                  rules={[
+                    "minLength",
+                    "specialChar",
+                    "number",
+                    "capital",
+                    "match",
+                  ]}
                   minLength={8}
                   value={password}
                   valueAgain={passwordAgain}
@@ -163,28 +173,36 @@ function Register({ location }) {
             <div className="line"></div>
           </div>
 
-          <div className="row justify-content-center">
-            <div className="btn-google col-6">
-              <button className="btn btn-white btn-circle col-12">
-                <img src="../img/google.png" alt="btn" className="img-fluid" />
-              </button>
-              ⠀
-              <button className="btn btn-white btn-circle col-12">
-                <img
-                  src="../img/facebook.png"
-                  alt="btn"
-                  className="img-fluid p-3"
-                />
-              </button>
+          <div className="row">
+            <div className="col-12 d-flex justify-content-center mb-4">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                  const id_token = credentialResponse.credential;
+                  dispatch(loginWithGoogle(id_token));
+                  navigate(redirect);
+                }}
+                type="standard"
+                theme="outline"
+                shape="pill"
+                size="large"
+                text="continue_with"
+                logo_alignment="left"
+                locale="pl_PL"
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
             </div>
           </div>
 
           <div className="row">
             <p>
               Masz już konto?{" "}
-              <Link 
-              to={redirect ? `/login?redirect=${redirect}` : "login"}
-              className="link">
+              <Link
+                to={redirect ? `/login?redirect=${redirect}` : "login"}
+                className="link"
+              >
                 Zaloguj się
               </Link>
             </p>
