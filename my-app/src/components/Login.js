@@ -104,22 +104,28 @@ function Login({ location }) {
           </div>
 
           <div className="row justify-content-center">
-            <div className="btn-google col-6">
-              <div className='spacer'></div>
-                <GoogleLogin
-                  onSuccess={credentialResponse => {
-                    console.log(credentialResponse);
-                    const id_token = credentialResponse.credential;
-                    dispatch(loginWithGoogle(id_token));
-                    navigate(redirect);
-                  }}
-                  type="icon"
-                  shape="circle"
-                  onError={() => {
-                    console.log('Login Failed');
-                  }}
-                />
+          <div className="row">
+            <div className="col-12 d-flex justify-content-center mb-4">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                  const id_token = credentialResponse.credential;
+                  dispatch(loginWithGoogle(id_token));
+                  navigate(redirect);
+                }}
+                type="standard"
+                theme="outline"
+                shape="pill"
+                size="large"
+                text="continue_with"
+                logo_alignment="left"
+                locale="pl_PL"
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
             </div>
+          </div>
           </div>
 
           <div className="row">
