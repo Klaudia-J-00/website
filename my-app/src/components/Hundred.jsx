@@ -27,7 +27,7 @@ const Hundred = (props) => {
       </group>
       <group position={[3.226, 0.55, -1.256]} scale={0.215}>
         <mesh geometry={nodes.Plane442.geometry}>
-          <meshStandardMaterial color={baseColor.color} />
+          <meshStandardMaterial color={keyColor.color} />
         </mesh>
         <mesh geometry={nodes.Plane442_1.geometry}>
           <meshStandardMaterial color={keyThirdColor.color} />

@@ -37,7 +37,7 @@ function Login({ location }) {
   };
 
   return (
-    <div className="container">
+    <div className="container my-5">
       <div className="row">
         <div className="col-5 d-none d-md-block login">
           <img

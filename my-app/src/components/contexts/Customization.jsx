@@ -10,10 +10,6 @@ export const colorsForKeyboard = [
         name: "jasno zielony"
     }, 
     {
-        color: "#45d662",
-        name: "zielony"
-    }, 
-    {
         color: "#94B276",
         name: "oliwkowy"
     },
@@ -26,16 +22,8 @@ export const colorsForKeyboard = [
         name: "niebieski"
     },
     {
-        color: "#3550bd",
-        name: "ciemno niebieski"
-    },
-    {
         color: "#195E67",
         name: "morski"
-    }, 
-    {
-        color: "#d4a3c9", 
-        name: "lawenda"
     }, 
     {
         color: "#EDA1DC", 
@@ -99,10 +87,10 @@ const CustomizationContext = createContext({});
 
 export const CustomizationProvider = (props) => {
     const [baseColor, setBaseColor] = useState(colorsForKeyboard[0]);
-    const [insideBaseColor, setInsideBaseColor] = useState(colorsForKeyboard[9]);
+    const [insideBaseColor, setInsideBaseColor] = useState(colorsForKeyboard[0]);
     const [keyColor, setKeyColor] = useState(colorsForKeyboard[0]);
-    const [keyOtherColor, setKeyOtherColor] = useState(colorsForKeyboard[5]);
-    const [keyThirdColor, setKeyThirdColor] = useState(colorsForKeyboard[8]);
+    const [keyOtherColor, setKeyOtherColor] = useState(colorsForKeyboard[4]);
+    const [keyThirdColor, setKeyThirdColor] = useState(colorsForKeyboard[6]);
 
     return <CustomizationContext.Provider 
         value={{

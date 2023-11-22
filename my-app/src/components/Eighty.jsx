@@ -27,7 +27,7 @@ const Eighty = (props) => {
       </group>
       <group position={[-4.583, 0.405, 0.088]} scale={0.215}>
         <mesh geometry={nodes.Plane308.geometry}>
-          <meshStandardMaterial color={baseColor.color} />
+          <meshStandardMaterial color={keyColor.color} />
         </mesh>
         <mesh geometry={nodes.Plane308_1.geometry}>
           <meshStandardMaterial color={keyThirdColor.color} />
